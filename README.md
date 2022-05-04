@@ -2,10 +2,12 @@
 Quản lí key phần mềm
 
 Enable sa login 
+
 https://docs.microsoft.com/vi-vn/sql/database-engine/configure-windows/change-server-authentication-mode?view=sql-server-ver15&viewFallbackFrom=azure-sqldw-latest
 
 Sửa  Project2/appsettings.json 
-"DbConnection": "Your-ServerName;Database=Quan ly key phan mem;User ID=sa;Password=Your-Password;"
+
+"DbConnection": Server="Your-ServerName;Database=Quan ly key phan mem;User ID=sa;Password=Your-Password;"
 
 Getlist tool
 
