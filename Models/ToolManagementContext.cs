@@ -6,13 +6,13 @@ using Microsoft.EntityFrameworkCore.Metadata;
 
 namespace Project2.Models
 {
-    public partial class QuanlykeyphanmemContext : DbContext
+    public partial class ToolManagementContext : DbContext
     {
-        public QuanlykeyphanmemContext()
+        public ToolManagementContext()
         {
         }
 
-        public QuanlykeyphanmemContext(DbContextOptions<QuanlykeyphanmemContext> options)
+        public ToolManagementContext(DbContextOptions<ToolManagementContext> options)
             : base(options)
         {
         }
