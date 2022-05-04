@@ -1,6 +1,10 @@
 # Project2
 Quản lí key phần mềm
 
+Restore Quanlikeyphanmem.bak file 
+
+https://stackoverflow.com/questions/8715687/how-to-copy-a-database-from-one-computer-to-another
+
 Enable sa login 
 
 https://docs.microsoft.com/vi-vn/sql/database-engine/configure-windows/change-server-authentication-mode?view=sql-server-ver15&viewFallbackFrom=azure-sqldw-latest
