@@ -15,32 +15,36 @@ Sửa  Project2/appsettings.json
 
 Getlist tool
 
-curl --location --request GET 'https://localhost:44394/api/Tool/GetTool'
+curl --location --request GET 'https://localhost:44394/api/quan-ly-tool/danh-sach-tool'
 
 Add tool
 
-curl --location --request POST 'https://localhost:44394/api/Tool/AddTool' \
+curl --location --request POST 'https://localhost:44394/api/quan-ly-tool/them-tool' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "ID": 0,
     "Code" : "AAAAAA",
     "Name" : "Key phần mềm A",
     "Price": 300000,
-    "Status": "Hoạt động"
+     "Status": "Hoạt động"
 }'
 
 Edit tool
 
-curl --location --request PUT 'https://localhost:44394/api/Tool/EditTool' \
+curl --location --request PUT 'https://localhost:44394/api/quan-ly-tool/sua-tool' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "ID": 0,
     "Code" : "AAAAAA",
-    "Name" : "Key phần mềm a",
-    "Price": 200000,
-    "Status": "Hoạt động"
+    "Name" : "Key phần mềm A",
+    "Price": 300000,
+     "Status": "Hoạt động"
 }'
 
 Delete tool
 
-curl --location --request DELETE 'https://localhost:44394/api/Tool/DeleteTool?id=0'
+curl --location --request DELETE 'https://localhost:44394/api/quan-ly-tool/xoa-tool?id=0'
+
+Get Tool By Id
+
+curl --location --request GET 'https://localhost:44394/api/quan-ly-tool/lay-tool-theo-id?id=0'
