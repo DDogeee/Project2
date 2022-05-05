@@ -1,4 +1,5 @@
-﻿using Project2.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using Project2.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,10 +9,11 @@ namespace Project2.IServices
 {
     public interface IToolService
     {
-        IEnumerable<Tool> GetTool();
-        Tool AddTool(Tool tool);
-        Tool EditTool(Tool tool);
-        Tool DeleteTool(int id);
+        JsonResult GetTool();
+        JsonResult AddTool(Tool tool);
+        JsonResult EditTool(Tool tool);
+        JsonResult DeleteTool(int id);
+        JsonResult GetToolId(int id);
 
 
 

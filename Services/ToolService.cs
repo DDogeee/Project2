@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Project2.IServices;
 using Project2.Models;
 using System;
@@ -6,44 +7,94 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
+
 namespace Project2.Services
 {
     public class ToolService : IToolService
     {
-        ToolManagementContext dbContext;
-        public ToolService(ToolManagementContext _db)
+        ToolManagementContext _dbContext;
+        public ToolService(ToolManagementContext db)
         {
-            dbContext = _db;
+            _dbContext = db;
         }
-        public IEnumerable<Tool> GetTool()
+        public JsonResult GetTool()
         {
-            var tools = dbContext.Tools.ToList();
-            return tools;
-        }
-
-        public Tool AddTool(Tool tool)
-        {
-            if (tool != null)
+            try
             {
-                dbContext.Tools.Add(tool);
-                dbContext.SaveChanges();
-                return tool;
+                var tools = _dbContext.Tools.ToList();
+                var data = new { has_error = "no", message = "successfully get tool", data = tools };
+                return new JsonResult(data);
             }
-            return null;
+            catch
+            {
+                var data = new { has_error = "no", message = "something went wrong" };
+                return new JsonResult(data);
+            }
+
         }
 
-        public Tool EditTool(Tool tool)
+        public JsonResult AddTool(Tool tool)
         {
-            dbContext.Entry(tool).State = EntityState.Modified;
-            dbContext.SaveChanges();
-            return tool;
+            try
+            {
+                _dbContext.Tools.Add(tool);
+                _dbContext.SaveChanges();
+                var data = new { has_error = "no", message = "successfully add tool", data =  tool};
+                return new JsonResult(data);
+            }
+            catch
+            {
+                var data = new { has_error = "no", message = "something went wrong" };
+                return new JsonResult(data);
+            }
         }
-        public Tool DeleteTool(int id)
+
+        public JsonResult EditTool(Tool tool)
         {
-            var tool = dbContext.Tools.FirstOrDefault(x => x.Id == id);
-            dbContext.Entry(tool).State = EntityState.Deleted;
-            dbContext.SaveChanges();
-            return tool;
+            try
+            {
+                _dbContext.Entry(tool).State = EntityState.Modified;
+                _dbContext.SaveChanges();
+                var data = new { has_error = "no", message = "successfully edit tool" , data = tool};
+                return new JsonResult(data);
+            }
+            catch
+            {
+                var data = new { has_error = "yes", message = "something went wrong" };
+                return new JsonResult(data);
+            }
+            
+        }
+        public JsonResult DeleteTool(int id)
+        {
+            try 
+            {
+                var tool = _dbContext.Tools.FirstOrDefault(x => x.Id == id);
+                _dbContext.Entry(tool).State = EntityState.Deleted;
+                _dbContext.SaveChanges();
+                var data = new { has_error = "no", message = "successfully delete tool" , data = tool};
+                return new JsonResult(data);
+            }
+            catch
+            {
+                var data = new { has_error = "yes", message = "something went wrong"};
+                return new JsonResult(data);
+            }
+
+        }
+        public JsonResult GetToolId(int id)
+        {
+            try
+            {
+                var tool = _dbContext.Tools.FirstOrDefault(x => x.Id == id);
+                var data = new { has_error = "no", message = "successfully get tool", data = tool};
+                return new JsonResult(data);
+            }
+            catch
+            {
+                var data = new { has_error = "yes", message = "something went wrong" };
+                return new JsonResult(data);
+            }
         }
     }
 }

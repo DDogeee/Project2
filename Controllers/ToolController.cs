@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Project2.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/quan-ly-tool")]
     [ApiController]
     public class ToolController : ControllerBase
     {
@@ -21,35 +21,38 @@ namespace Project2.Controllers
 
 
         [HttpGet]
-        [Route("[action]")]
-        [Route("api/Tool/GetTool")]
-        public IEnumerable<Tool> GetTool()
+        [Route("danh-sach-tool")]
+        public JsonResult GetTool()
         {
             return toolService.GetTool();
         }
 
         [HttpPost]
-        [Route("[action]")]
-        [Route("api/Tool/AddTool")]
-        public Tool AddTool(Tool tool)
+        [Route("them-tool")]
+        public JsonResult AddTool(Tool tool)
         {
             return toolService.AddTool(tool);
         }
 
         [HttpPut]
-        [Route("[action]")]
-        [Route("api/Tool/EditTool")]
-        public Tool EditTool(Tool tool)
+        [Route("sua-tool")]
+        public JsonResult EditTool(Tool tool)
         {
             return toolService.EditTool(tool);
         }
 
         [HttpDelete]
-        [Route("[action]")]
-        [Route("api/Tool/DeleteTool")]
-        public Tool DeleteTool(int id)
+        [Route("xoa-tool")]
+        public JsonResult DeleteTool(int id)
         {
             return toolService.DeleteTool(id);
+        }
+
+        [HttpGet]
+        [Route("lay-tool-theo-id")]
+        public JsonResult GetToolId(int id)
+        {
+            return toolService.GetToolId(id);
         }
     }
 }
