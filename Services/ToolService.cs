@@ -10,8 +10,8 @@ namespace Project2.Services
 {
     public class ToolService : IToolService
     {
-        QuanlykeyphanmemContext dbContext;
-        public ToolService(QuanlykeyphanmemContext _db)
+        ToolManagementContext dbContext;
+        public ToolService(ToolManagementContext _db)
         {
             dbContext = _db;
         }

@@ -31,7 +31,7 @@ namespace Project2
         {
             services.AddControllers();
             services.AddHttpClient();
-            services.AddDbContext<QuanlykeyphanmemContext>(option =>
+            services.AddDbContext<ToolManagementContext>(option =>
                     option.UseSqlServer(Configuration["DbConnection"]));
             services.AddTransient<IToolService, ToolService>();
         }
