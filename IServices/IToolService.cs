@@ -4,12 +4,13 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Project2.ViewModel;
 
 namespace Project2.IServices
 {
     public interface IToolService
     {
-        JsonResult GetTool();
+        Task<GenericResultModel<ToolResponseViewModel>> GetToolAsync();
         JsonResult AddTool(Tool tool);
         JsonResult EditTool(Tool tool);
         JsonResult DeleteTool(int id);

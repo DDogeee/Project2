@@ -5797,19 +5797,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\dungd\\.nuget\\packages\\": {}
+    "C:\\Users\\nhtuan2\\.nuget\\packages\\": {},
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\workspace\\Project2\\Project2\\Project2.csproj",
+      "projectUniqueName": "D:\\SourceCode\\Intern\\Project2\\Project2.csproj",
       "projectName": "Project2",
-      "projectPath": "D:\\workspace\\Project2\\Project2\\Project2.csproj",
-      "packagesPath": "C:\\Users\\dungd\\.nuget\\packages\\",
-      "outputPath": "D:\\workspace\\Project2\\Project2\\obj\\",
+      "projectPath": "D:\\SourceCode\\Intern\\Project2\\Project2.csproj",
+      "packagesPath": "C:\\Users\\nhtuan2\\.nuget\\packages\\",
+      "outputPath": "D:\\SourceCode\\Intern\\Project2\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"
+      ],
       "configFilePaths": [
-        "C:\\Users\\dungd\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\nhtuan2\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -5864,7 +5868,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.407\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.301\\RuntimeIdentifierGraph.json"
       }
     }
   }

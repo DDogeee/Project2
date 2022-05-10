@@ -6,29 +6,38 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Project2.ViewModel;
 
 
 namespace Project2.Services
 {
     public class ToolService : IToolService
     {
-        ToolManagementContext _dbContext;
+        private readonly ToolManagementContext _dbContext;
         public ToolService(ToolManagementContext db)
         {
             _dbContext = db;
         }
-        public JsonResult GetTool()
+
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolAsync()
         {
             try
             {
-                var tools = _dbContext.Tools.ToList();
-                var data = new { has_error = "no", message = "successfully get tool", data = tools };
-                return new JsonResult(data);
+                var tools = await _dbContext.Tools.Select(s => new ToolResponseViewModel
+                {
+                    Code = s.Code,
+                    Description = s.Description,
+                    Id = s.Id,
+                    Image = s.Image,
+                    Name = s.Name,
+                    Price = s.Price,
+                    Status = s.Status
+                }).ToListAsync();
+                return GenericResultModel<ToolResponseViewModel>.Success(tools);
             }
             catch
             {
-                var data = new { has_error = "no", message = "something went wrong" };
-                return new JsonResult(data);
+                return GenericResultModel<ToolResponseViewModel>.Failed("Something went wrong");
             }
 
         }

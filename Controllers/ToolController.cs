@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Project2.ViewModel;
 
 namespace Project2.Controllers
 {
@@ -13,46 +14,45 @@ namespace Project2.Controllers
     [ApiController]
     public class ToolController : ControllerBase
     {
-        private readonly IToolService toolService;
-        public ToolController(IToolService tool)
+        private readonly IToolService _toolService;
+        public ToolController(IToolService toolService)
         {
-            toolService = tool;
+            _toolService = toolService;
         }
 
 
-        [HttpGet]
-        [Route("danh-sach-tool")]
-        public JsonResult GetTool()
+        [HttpGet("danh-sach-tool")]
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetTool()
         {
-            return toolService.GetTool();
+            return await _toolService.GetToolAsync();
         }
 
         [HttpPost]
         [Route("them-tool")]
         public JsonResult AddTool(Tool tool)
         {
-            return toolService.AddTool(tool);
+            return _toolService.AddTool(tool);
         }
 
         [HttpPut]
         [Route("sua-tool")]
         public JsonResult EditTool(Tool tool)
         {
-            return toolService.EditTool(tool);
+            return _toolService.EditTool(tool);
         }
 
         [HttpDelete]
         [Route("xoa-tool")]
         public JsonResult DeleteTool(int id)
         {
-            return toolService.DeleteTool(id);
+            return _toolService.DeleteTool(id);
         }
 
         [HttpGet]
-        [Route("lay-tool-theo-id")]
+        [Route("chi-tiet")]
         public JsonResult GetToolId(int id)
         {
-            return toolService.GetToolId(id);
+            return _toolService.GetToolId(id);
         }
     }
 }
