@@ -48,3 +48,13 @@ curl --location --request DELETE 'https://localhost:44394/api/quan-ly-tool/xoa-t
 Get Tool By Id
 
 curl --location --request GET 'https://localhost:44394/api/quan-ly-tool/lay-tool-theo-id?id=0'
+
+
+Login 
+
+curl --location --request POST 'https://localhost:5001/api/quan-ly-user/dang-nhap' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "username" : "phamvudung",
+    "password" : "123456"
+}'
