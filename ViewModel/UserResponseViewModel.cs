@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
-#nullable disable
-
-namespace Project2.Models
+namespace Project2.ViewModel
 {
-    public partial class User
+    public class UserResponseViewModel
     {
-        public User()
-        {
-            Orders = new HashSet<Order>();
-        }
-
         public int Id { get; set; }
         public bool IsAdmin { get; set; }
         public string Username { get; set; }
@@ -25,7 +20,5 @@ namespace Project2.Models
         public DateTime? ModifiedDate { get; set; }
         public bool IsDeleted { get; set; }
         public DateTime? DeletedDate { get; set; }
-
-        public virtual ICollection<Order> Orders { get; set; }
     }
 }

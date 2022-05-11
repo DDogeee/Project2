@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -8,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Project2.IServices;
+using Project2.Middleware;
 using Project2.Models;
 using Project2.Services;
 using System;
@@ -30,10 +32,17 @@ namespace Project2
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddTokenAuthentication(Configuration);
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie(options =>
+            {
+                options.ExpireTimeSpan = TimeSpan.FromHours(4);
+            });
             services.AddHttpClient();
             services.AddDbContext<ToolManagementContext>(option =>
                     option.UseSqlServer(Configuration["DbConnection"]));
             services.AddTransient<IToolService, ToolService>();
+            services.AddTransient<IUserService, UserService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -47,8 +56,9 @@ namespace Project2
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
+
 
             app.UseEndpoints(endpoints =>
             {

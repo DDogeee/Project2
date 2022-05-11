@@ -28,7 +28,7 @@ namespace Project2.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=DESKTOP-2NJC789\\MSSQLSERVER01; Database=Quan ly key phan mem; User ID=sa;Password=123456;");
+                optionsBuilder.UseSqlServer("Server=.; Database=ToolManagement; User ID=sa;Password=1;");
             }
         }
 
@@ -38,9 +38,9 @@ namespace Project2.Models
 
             modelBuilder.Entity<Key>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(50);
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
@@ -68,7 +68,7 @@ namespace Project2.Models
                 entity.ToTable("Order");
 
                 entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
+                    .ValueGeneratedOnAdd()
                     .HasColumnName("ID");
 
                 entity.Property(e => e.OrderDate).HasColumnType("datetime");
@@ -92,8 +92,6 @@ namespace Project2.Models
             {
                 entity.ToTable("OrderDetail");
 
-                entity.Property(e => e.Id).ValueGeneratedNever();
-
                 entity.Property(e => e.Date).HasColumnType("datetime");
 
                 entity.Property(e => e.Discount).HasColumnType("decimal(18, 2)");
@@ -109,9 +107,7 @@ namespace Project2.Models
 
             modelBuilder.Entity<Tool>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.Code)
                     .IsRequired()
@@ -137,17 +133,13 @@ namespace Project2.Models
                     .HasMaxLength(100);
 
                 entity.Property(e => e.Price).HasColumnType("decimal(18, 2)");
-
-                entity.Property(e => e.Status)
-                    .IsRequired()
-                    .HasMaxLength(50);
             });
 
             modelBuilder.Entity<User>(entity =>
             {
-                entity.Property(e => e.Id)
-                    .ValueGeneratedNever()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
+
+                entity.Property(e => e.CreatedBy).HasMaxLength(50);
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 

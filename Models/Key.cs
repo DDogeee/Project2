@@ -17,6 +17,7 @@ namespace Project2.Models
         public int ToolId { get; set; }
         public string ToolKey { get; set; }
         public int Status { get; set; }
+        public string CreatedBy { get; set; }
         public DateTime? CreatedDate { get; set; }
         public DateTime? StartDate { get; set; }
         public DateTime? ToDate { get; set; }

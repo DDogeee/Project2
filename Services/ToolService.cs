@@ -33,6 +33,7 @@ namespace Project2.Services
                     Price = s.Price,
                     Status = s.Status
                 }).ToListAsync();
+
                 return GenericResultModel<ToolResponseViewModel>.Success(tools);
             }
             catch
