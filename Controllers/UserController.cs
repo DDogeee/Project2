@@ -30,7 +30,7 @@ namespace Project2.Controllers
 
         [HttpPost]
         [Route("dang-nhap")]
-        public GenericResultModel<string> Login(UserResponseViewModel user)
+        public GenericResultModel<JsonResult> Login(UserResponseViewModel user)
         {
             return _userService.Login(user);
         }

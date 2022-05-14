@@ -24,7 +24,7 @@ namespace Project2.Services
         }
 
 
-        public GenericResultModel<string> Login(UserResponseViewModel user)
+        public GenericResultModel<JsonResult> Login(UserResponseViewModel user)
         {
 
 
@@ -32,13 +32,13 @@ namespace Project2.Services
 
             // return null if user not found
             if (_user == null)
-                return GenericResultModel<string>.Failed("Wrong password");
+                return GenericResultModel<JsonResult>.Failed("Wrong password");
             else
             {
                 var jwt = new JwtService(_config);
                 var token = jwt.GenerateSecurityToken(user.Username);
-
-                return GenericResultModel<string>.Success(token);
+                var data = new {token = token, userId = _user.Id, isAdmin = _user.IsAdmin, status = _user.Status, username = _user.Username};
+                return GenericResultModel<JsonResult>.Success(new JsonResult(data));
             }
 
 
