@@ -58,3 +58,16 @@ curl --location --request POST 'https://localhost:5001/api/quan-ly-user/dang-nha
     "username" : "phamvudung",
     "password" : "123456"
 }'
+
+
+Register
+
+curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-ki' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "IsAdmin": false,
+    "Username": "phamvudung",
+    "Password": "123456",
+    "Phone": "0346909605",
+    "IsDeleted": false
+}'
