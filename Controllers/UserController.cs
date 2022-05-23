@@ -41,6 +41,13 @@ namespace Project2.Controllers
         {
             return _userService.GetUserId(id);
         }
+        
+        [HttpPost]
+        [Route("dang-ki")]
+        public GenericResultModel<UserResponseViewModel> Register(UserResponseViewModel user)
+        {
+            return _userService.Register(user);
+        }
 
     }
 }

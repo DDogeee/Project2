@@ -23,7 +23,42 @@ namespace Project2.Services
             _config = config;
         }
 
+        public  GenericResultModel<UserResponseViewModel> Register(UserResponseViewModel user)
+        {
+            try
+            {
+                var _userchecker = _dbContext.Users.SingleOrDefault(x => x.Username == user.Username);
 
+                if (_userchecker == null)
+                {
+                    var _user = new User
+                    {
+                        IsAdmin = user.IsAdmin,
+                        Username = user.Username,
+                        Password = user.Password,
+                        Phone = user.Phone,
+                        IsDeleted = false,
+                    };
+
+                    _dbContext.Users.Add(_user);
+                    _dbContext.SaveChanges();
+                    return GenericResultModel<UserResponseViewModel>.Success(user);
+                }
+                else
+                {
+                    return GenericResultModel<UserResponseViewModel>.Failed("Username already exist");
+                } 
+                    
+                   
+            }
+                
+
+            catch
+            {
+                return GenericResultModel<UserResponseViewModel>.Failed("Something went wrong");
+
+            }
+        }
         public GenericResultModel<JsonResult> Login(UserResponseViewModel user)
         {
 

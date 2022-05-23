@@ -11,5 +11,7 @@ namespace Project2.IServices
     {
         GenericResultModel<JsonResult> Login(UserResponseViewModel user);
         JsonResult GetUserId(int id);
+
+        GenericResultModel<UserResponseViewModel> Register(UserResponseViewModel user);
     }
 }
