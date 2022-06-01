@@ -13,5 +13,7 @@ namespace Project2.IServices
         JsonResult GetUserId(int id);
 
         GenericResultModel<UserResponseViewModel> Register(UserResponseViewModel user);
+
+        GenericResultModel<string> Logout(string token);
     }
 }

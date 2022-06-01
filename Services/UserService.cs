@@ -103,5 +103,16 @@ namespace Project2.Services
                 return new JsonResult(data);
             }
         }
+
+        public GenericResultModel<string> Logout(string token)
+        {
+            var _token = new ExpiredTokens
+            {
+                ExpiredToken = token
+            };
+            _dbContext.ExpiredTokens.Add(_token);
+            _dbContext.SaveChanges();
+            return GenericResultModel<string>.Success("Logout Successful");
+        }
     }
 }

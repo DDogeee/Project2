@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Project2.IServices;
@@ -15,7 +16,9 @@ using System.Threading.Tasks;
 namespace Project2.Controllers
 {
     [Route("api/quan-ly-user")]
+    [Authorize]
     [ApiController]
+
     
     public class UserController
     {
@@ -49,5 +52,11 @@ namespace Project2.Controllers
             return _userService.Register(user);
         }
 
+        [HttpPost]
+        [Route("dang-xuat")]
+        public GenericResultModel<string> Logout(string token)
+        {
+            return _userService.Logout(token);
+        }
     }
 }

@@ -7,11 +7,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Project2.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Project2.Controllers
 {
     [Route("api/quan-ly-tool")]
     [ApiController]
+    [Authorize]
     public class ToolController : ControllerBase
     {
         private readonly IToolService _toolService;
