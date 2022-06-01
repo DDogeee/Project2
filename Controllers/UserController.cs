@@ -16,7 +16,6 @@ using System.Threading.Tasks;
 namespace Project2.Controllers
 {
     [Route("api/quan-ly-user")]
-    [Authorize]
     [ApiController]
 
     
@@ -39,6 +38,8 @@ namespace Project2.Controllers
         }
 
         [HttpGet]
+        [Authorize]
+
         [Route("chi-tiet")]
         public JsonResult GetUserId(int id)
         {

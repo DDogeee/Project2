@@ -13,7 +13,6 @@ namespace Project2.Controllers
 {
     [Route("api/quan-ly-tool")]
     [ApiController]
-    [Authorize]
     public class ToolController : ControllerBase
     {
         private readonly IToolService _toolService;
@@ -31,6 +30,8 @@ namespace Project2.Controllers
 
         [HttpPost]
         [Route("them-tool")]
+        [Authorize]
+
         public JsonResult AddTool(Tool tool)
         {
             return _toolService.AddTool(tool);
@@ -38,6 +39,8 @@ namespace Project2.Controllers
 
         [HttpPut]
         [Route("sua-tool")]
+        [Authorize]
+
         public JsonResult EditTool(Tool tool)
         {
             return _toolService.EditTool(tool);
@@ -45,6 +48,8 @@ namespace Project2.Controllers
 
         [HttpDelete]
         [Route("xoa-tool")]
+        [Authorize]
+
         public JsonResult DeleteTool(int id)
         {
             return _toolService.DeleteTool(id);
