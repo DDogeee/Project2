@@ -70,8 +70,18 @@ namespace Project2.Services
                 return GenericResultModel<JsonResult>.Failed("Wrong password");
             else
             {
+                var __user = new UserResponseViewModel
+                {
+                    IsAdmin = _user.IsAdmin,
+                    Username = _user.Username,
+                    Phone = _user.Phone,
+                    IsDeleted = _user.IsDeleted,
+                    Fullname = _user.Fullname,
+                    Email = _user.Email,
+
+                };
                 var jwt = new JwtService(_config);
-                var token = jwt.GenerateSecurityToken(user.Username);
+                var token = jwt.GenerateSecurityToken(__user.ToString());
                 var data = new {token = token, userId = _user.Id, isAdmin = _user.IsAdmin, status = _user.Status, username = _user.Username};
                 return GenericResultModel<JsonResult>.Success(new JsonResult(data));
             }
