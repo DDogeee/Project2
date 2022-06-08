@@ -71,3 +71,11 @@ curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-ki
     "Phone": "0346909605",
     "IsDeleted": false
 }'
+
+Logout
+
+curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-xuat?token=asdasdjdajd' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    
+}'
