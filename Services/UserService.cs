@@ -78,11 +78,13 @@ namespace Project2.Services
                     IsDeleted = _user.IsDeleted,
                     Fullname = _user.Fullname,
                     Email = _user.Email,
+                    Status = _user.Status,
 
                 };
                 var jwt = new JwtService(_config);
-                var token = jwt.GenerateSecurityToken(__user.ToString());
-                var data = new {token = token, userId = _user.Id, isAdmin = _user.IsAdmin, status = _user.Status, username = _user.Username};
+                
+                var token = jwt.GenerateSecurityToken(__user.Username);
+                var data = new {token = token, user=__user};
                 return GenericResultModel<JsonResult>.Success(new JsonResult(data));
             }
 

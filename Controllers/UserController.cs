@@ -19,10 +19,11 @@ namespace Project2.Controllers
     [ApiController]
 
     
-    public class UserController
+    public class UserController : ControllerBase
     {
         private readonly IConfiguration _config;
         private readonly IUserService _userService;
+
         public UserController(IConfiguration config, IUserService userService)
         {
             _userService = userService;
@@ -55,9 +56,13 @@ namespace Project2.Controllers
 
         [HttpPost]
         [Route("dang-xuat")]
-        public GenericResultModel<string> Logout(string token)
+        public async Task<GenericResultModel<string>> Logout()
         {
-            return _userService.Logout(token);
+            //var key = Guid.NewGuid().ToString().ToUpper();
+            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            return _userService.Logout(accessToken);
         }
     }
 }
+
+

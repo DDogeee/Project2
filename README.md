@@ -74,7 +74,7 @@ curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-ki
 
 Logout
 
-curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-xuat?token=asdasdjdajd' \
+curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-xuat' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     
