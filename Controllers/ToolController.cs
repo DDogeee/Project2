@@ -28,38 +28,43 @@ namespace Project2.Controllers
             return await _toolService.GetToolAsync();
         }
 
-        [HttpPost]
-        [Route("them-tool")]
+        [HttpPost("them-tool")]
         [Authorize]
-
-        public JsonResult AddTool(Tool tool)
+        public async Task<GenericResultModel<ToolResponseViewModel>> AddToolAsync(ToolResponseViewModel _tool)
         {
-            return _toolService.AddTool(tool);
+            return await _toolService.AddToolAsync(_tool);
         }
 
-        [HttpPut]
-        [Route("sua-tool")]
+        [HttpPut("sua-tool")]
         [Authorize]
 
-        public JsonResult EditTool(Tool tool)
+        // public JsonResult EditTool(Tool tool)
+        // {
+        //     return _toolService.EditTool(tool);
+        // }
+
+        public async Task<GenericResultModel<ToolResponseViewModel>> EditToolAsync(ToolResponseViewModel _tool)
         {
-            return _toolService.EditTool(tool);
+            return await _toolService.EditToolAsync(_tool);
         }
 
-        [HttpDelete]
-        [Route("xoa-tool")]
+        [HttpDelete("xoa-tool")]
         [Authorize]
 
-        public JsonResult DeleteTool(int id)
+        // public JsonResult DeleteTool(int id)
+        // {
+        //     return _toolService.DeleteTool(id);
+        // }
+
+        public async Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(int id)
         {
-            return _toolService.DeleteTool(id);
+            return await _toolService.DeleteToolAsync(id);
         }
 
-        [HttpGet]
-        [Route("chi-tiet")]
-        public JsonResult GetToolId(int id)
+        [HttpGet("chi-tiet")]
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(int id)
         {
-            return _toolService.GetToolId(id);
+            return await _toolService.GetToolIdAsync(id);
         }
     }
 }
