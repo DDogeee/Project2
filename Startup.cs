@@ -43,6 +43,7 @@ namespace Project2
                     option.UseSqlServer(Configuration["DbConnection"]));
             services.AddTransient<IToolService, ToolService>();
             services.AddTransient<IUserService, UserService>();
+            services.AddTransient<IBlackListTokenService, BlackListTokenService>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,7 +55,7 @@ namespace Project2
             }
 
             app.UseHttpsRedirection();
-
+            app.UseMiddleware<BlackListTokenMiddleware>();
             app.UseRouting();
             app.UseAuthentication();
             app.UseAuthorization();
