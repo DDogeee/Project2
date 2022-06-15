@@ -37,73 +37,93 @@ namespace Project2.Services
                 return GenericResultModel<ToolResponseViewModel>.Success(tools);
             }
             catch
-            {
+            {   
                 return GenericResultModel<ToolResponseViewModel>.Failed("Something went wrong");
             }
 
         }
 
-        public JsonResult AddTool(Tool tool)
+        public async Task<GenericResultModel<ToolResponseViewModel>> AddToolAsync(ToolResponseViewModel _tool)
         {
             try
             {
+                var tool = new Tool {
+                    Id = _tool.Id,
+                    Code = _tool.Code,
+                    Name = _tool.Name,
+                    Image = _tool.Image,
+                    Description = _tool.Description,
+                    Price = _tool.Price,
+                    Status = _tool.Status,
+                };
+
                 _dbContext.Tools.Add(tool);
-                _dbContext.SaveChanges();
-                var data = new { has_error = "no", message = "successfully add tool", data =  tool};
-                return new JsonResult(data);
+                await _dbContext.SaveChangesAsync();
+
+                return GenericResultModel<ToolResponseViewModel>.Success("Tool added successfully");
             }
             catch
-            {
-                var data = new { has_error = "no", message = "something went wrong" };
-                return new JsonResult(data);
+            {   
+                return GenericResultModel<ToolResponseViewModel>.Failed("Failed to add tool");
             }
-        }
 
-        public JsonResult EditTool(Tool tool)
+        }
+        public async Task<GenericResultModel<ToolResponseViewModel>> EditToolAsync(ToolResponseViewModel _tool)
         {
             try
             {
+                var tool = new Tool {
+                    Id = _tool.Id,
+                    Code = _tool.Code,
+                    Name = _tool.Name,
+                    Image = _tool.Image,
+                    Description = _tool.Description,
+                    Price = _tool.Price,
+                    Status = _tool.Status,
+                };
                 _dbContext.Entry(tool).State = EntityState.Modified;
-                _dbContext.SaveChanges();
-                var data = new { has_error = "no", message = "successfully edit tool" , data = tool};
-                return new JsonResult(data);
-            }
-            catch
-            {
-                var data = new { has_error = "yes", message = "something went wrong" };
-                return new JsonResult(data);
-            }
-            
-        }
-        public JsonResult DeleteTool(int id)
-        {
-            try 
-            {
-                var tool = _dbContext.Tools.FirstOrDefault(x => x.Id == id);
-                _dbContext.Entry(tool).State = EntityState.Deleted;
-                _dbContext.SaveChanges();
-                var data = new { has_error = "no", message = "successfully delete tool" , data = tool};
-                return new JsonResult(data);
-            }
-            catch
-            {
-                var data = new { has_error = "yes", message = "something went wrong"};
-                return new JsonResult(data);
-            }
+                await _dbContext.SaveChangesAsync();
 
+                return GenericResultModel<ToolResponseViewModel>.Success("Tool edited successfully");
+            }
+            catch
+            {   
+                return GenericResultModel<ToolResponseViewModel>.Failed("Failed to edit tool");
+            }
         }
-        public JsonResult GetToolId(int id)
+        public async Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(int id)
         {
             try
             {
-                var tool = _dbContext.Tools.FirstOrDefault(x => x.Id == id);
-                var data = new { has_error = "no", message = "successfully get tool", data = tool};
-                return new JsonResult(data);
+                var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == id);
+                _dbContext.Entry(tool).State = EntityState.Deleted;
+                await _dbContext.SaveChangesAsync();
+                return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");
             }
             catch
+            {   
+                return GenericResultModel<ToolResponseViewModel>.Failed("Failed to delete tool");
+            }
+        }
+          public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(int id)
+        {
+            try
             {
-                var data = new { has_error = "yes", message = "something went wrong" };
-                return new JsonResult(data);
+                var _tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == id);
+                var toolView = new ToolResponseViewModel {
+                    Id = _tool.Id,
+                    Code = _tool.Code,
+                    Name = _tool.Name,
+                    Image = _tool.Image,
+                    Description = _tool.Description,
+                    Price = _tool.Price,
+                    Status = _tool.Status,
+                };
+                return GenericResultModel<ToolResponseViewModel>.Success(toolView);
+            }
+            catch
+            {   
+                return GenericResultModel<ToolResponseViewModel>.Failed("Failed to get tool by ID");
             }
         }
     }
