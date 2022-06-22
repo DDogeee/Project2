@@ -35,14 +35,14 @@ namespace Project2.ViewModel
             };
         }
 
-        //public static GenericResultModel<T> Success(string message)
-        //{
-        //    return new GenericResultModel<T>
-        //    {
-        //        IsSuccess = true,
-        //        Message = message
-        //    };
-        //}
+        public static GenericResultModel<T> Success(string message)
+        {
+           return new GenericResultModel<T>
+           {
+               IsSuccess = true,
+               Message = message
+           };
+        }
 
         public static GenericResultModel<T> Failed()
         {

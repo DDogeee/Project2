@@ -39,6 +39,13 @@ namespace Project2
                 options.ExpireTimeSpan = TimeSpan.FromHours(4);
             });
             services.AddHttpClient();
+            services.AddCors(options =>
+        {
+            options.AddPolicy("CorsPolicy",
+                builder => builder.AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader());
+        });
             services.AddDbContext<ToolManagementContext>(option =>
                     option.UseSqlServer(Configuration["DbConnection"]));
             services.AddTransient<IToolService, ToolService>();
@@ -57,6 +64,8 @@ namespace Project2
             app.UseHttpsRedirection();
             app.UseMiddleware<BlackListTokenMiddleware>();
             app.UseRouting();
+
+            app.UseCors("CorsPolicy");
             app.UseAuthentication();
             app.UseAuthorization();
 
