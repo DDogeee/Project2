@@ -91,11 +91,11 @@ namespace Project2.Services
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to edit tool");
             }
         }
-        public async Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(int id)
+        public async Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(ToolResponseViewModel _tool)
         {
             try
             {
-                var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == id);
+                var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
                 _dbContext.Entry(tool).State = EntityState.Deleted;
                 await _dbContext.SaveChangesAsync();
                 return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");
@@ -105,19 +105,19 @@ namespace Project2.Services
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to delete tool");
             }
         }
-          public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(int id)
+          public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(ToolResponseViewModel _tool)
         {
             try
             {
-                var _tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == id);
+                var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
                 var toolView = new ToolResponseViewModel {
-                    Id = _tool.Id,
-                    Code = _tool.Code,
-                    Name = _tool.Name,
-                    Image = _tool.Image,
-                    Description = _tool.Description,
-                    Price = _tool.Price,
-                    Status = _tool.Status,
+                    Id = tool.Id,
+                    Code = tool.Code,
+                    Name = tool.Name,
+                    Image = tool.Image,
+                    Description = tool.Description,
+                    Price = tool.Price,
+                    Status = tool.Status,
                 };
                 return GenericResultModel<ToolResponseViewModel>.Success(toolView);
             }

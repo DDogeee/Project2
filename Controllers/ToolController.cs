@@ -37,12 +37,6 @@ namespace Project2.Controllers
 
         [HttpPut("sua-tool")]
         [Authorize]
-
-        // public JsonResult EditTool(Tool tool)
-        // {
-        //     return _toolService.EditTool(tool);
-        // }
-
         public async Task<GenericResultModel<ToolResponseViewModel>> EditToolAsync(ToolResponseViewModel _tool)
         {
             return await _toolService.EditToolAsync(_tool);
@@ -50,21 +44,15 @@ namespace Project2.Controllers
 
         [HttpDelete("xoa-tool")]
         [Authorize]
-
-        // public JsonResult DeleteTool(int id)
-        // {
-        //     return _toolService.DeleteTool(id);
-        // }
-
-        public async Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(int id)
+        public async Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(ToolResponseViewModel _tool)
         {
-            return await _toolService.DeleteToolAsync(id);
+            return await _toolService.DeleteToolAsync(_tool);
         }
 
         [HttpGet("chi-tiet")]
-        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(int id)
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(ToolResponseViewModel _tool)
         {
-            return await _toolService.GetToolIdAsync(id);
+            return await _toolService.GetToolIdAsync(_tool);
         }
     }
 }
