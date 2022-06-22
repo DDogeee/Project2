@@ -50,6 +50,7 @@ namespace Project2
                     option.UseSqlServer(Configuration["DbConnection"]));
             services.AddTransient<IToolService, ToolService>();
             services.AddTransient<IKeyService, KeyService>();
+            services.AddTransient<IOrderService, OrderService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IBlackListTokenService, BlackListTokenService>();
         }
