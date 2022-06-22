@@ -49,6 +49,7 @@ namespace Project2
             services.AddDbContext<ToolManagementContext>(option =>
                     option.UseSqlServer(Configuration["DbConnection"]));
             services.AddTransient<IToolService, ToolService>();
+            services.AddTransient<IKeyService, KeyService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IBlackListTokenService, BlackListTokenService>();
         }

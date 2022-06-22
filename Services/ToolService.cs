@@ -38,7 +38,7 @@ namespace Project2.Services
             }
             catch
             {   
-                return GenericResultModel<ToolResponseViewModel>.Failed("Something went wrong");
+                return GenericResultModel<ToolResponseViewModel>.Failed("Failed to view list of tools");
             }
 
         }
@@ -47,7 +47,8 @@ namespace Project2.Services
         {
             try
             {
-                var tool = new Tool {
+                var tool = new Tool 
+                {
                     Id = _tool.Id,
                     Code = _tool.Code,
                     Name = _tool.Name,
@@ -55,6 +56,8 @@ namespace Project2.Services
                     Description = _tool.Description,
                     Price = _tool.Price,
                     Status = _tool.Status,
+                    // CreatedBy = ?,
+                    CreatedDate = DateTime.Now
                 };
 
                 _dbContext.Tools.Add(tool);
@@ -80,6 +83,8 @@ namespace Project2.Services
                     Description = _tool.Description,
                     Price = _tool.Price,
                     Status = _tool.Status,
+                    // ModifiedBy = ?,
+                    ModifiedDate = DateTime.Now
                 };
                 _dbContext.Entry(tool).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
@@ -96,7 +101,14 @@ namespace Project2.Services
             try
             {
                 var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
-                _dbContext.Entry(tool).State = EntityState.Deleted;
+
+                // _dbContext.Entry(tool).State = EntityState.Deleted;
+                // update the value of IsDeleted instead
+                tool.IsDeleted = true;
+                // tool.DeletedBy = ?;
+                tool.DeletedDate = DateTime.Now;
+
+                _dbContext.Entry(tool).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
                 return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");
             }
