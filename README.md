@@ -79,3 +79,41 @@ curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-xu
 --data-raw '{
     
 }'
+
+Get Key list
+
+curl --location --request GET 'https://localhost:5001/api/quan-ly-key/danh-sach-key'
+
+Generate a new key 
+
+curl --location --request POST 'https://localhost:5001/api/quan-ly-key/sinh-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "ToolId": 1,
+    "MachineId": "123456789"
+}'
+
+Extend key
+
+curl --location --request PUT 'https://localhost:5001/api/quan-ly-key/gia-han-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "Id": 2
+}'
+
+Delete key
+
+curl --location --request DELETE 'https://localhost:5001/api/quan-ly-key/xoa-key' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "Id": 2
+}'
+
+Get Key by ID
+
+curl --location --request GET 'https://localhost:5001/api/quan-ly-key/chi-tiet' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "Id": 2
+}'
+
