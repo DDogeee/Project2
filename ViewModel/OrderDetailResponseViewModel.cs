@@ -1,11 +1,9 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 
-#nullable disable
-
-namespace Project2.Models
+namespace Project2.ViewModel
 {
-    public partial class OrderDetail
+    public class OrderDetailResponseViewModel
     {
         public int Id { get; set; }
         public int OrderId { get; set; }
@@ -13,8 +11,5 @@ namespace Project2.Models
         public decimal Price { get; set; }
         public decimal? Discount { get; set; }
         public DateTime? Date { get; set; }
-
-        public virtual Key Key { get; set; }
-        public virtual Order Order { get; set; }
     }
 }

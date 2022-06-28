@@ -11,12 +11,12 @@ namespace Project2.IServices
     public interface IKeyService
     {
         Task<GenericResultModel<KeyResponseViewModel>> GetKeyAsync();
-        Task<GenericResultModel<KeyResponseViewModel>> GenerateKeyAsync(KeyResponseViewModel _key);
         Task<GenericResultModel<KeyResponseViewModel>> ExtendKeyAsync(KeyResponseViewModel _key);
         Task<GenericResultModel<KeyResponseViewModel>> DeleteKeyAsync(KeyResponseViewModel _key);
         Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key);
+        //Task<GenericResultModel<KeyResponseViewModel>> GetKeyByOrderIdAsync(KeyResponseViewModel _key);
 
-
+        // Task<GenericResultModel<KeyResponseViewModel>> GenerateKeyAsync(KeyResponseViewModel _key);
 
     }
 }

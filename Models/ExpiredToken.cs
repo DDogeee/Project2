@@ -5,9 +5,9 @@ using System.Collections.Generic;
 
 namespace Project2.Models
 {
-    public partial class ExpiredTokens
+    public partial class ExpiredToken
     {
         public int Id { get; set; }
-        public string ExpiredToken { get; set; }
+        public string ExpiredToken1 { get; set; }
     }
 }

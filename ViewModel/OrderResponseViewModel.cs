@@ -7,7 +7,7 @@ namespace Project2.ViewModel
     {
         public int Id { get; set; }
         public int UserId { get; set; }
-        public string OrderDate { get; set; }           //type string, then convert to datetime
+        public DateTime? OrderDate { get; set; }
         public decimal TotalPrice { get; set; }
         public int? Status { get; set; }
     }

@@ -30,7 +30,6 @@ namespace Project2.Services
                     ToolId = s.ToolId,
                     ToolKey = s.ToolKey,
                     Status = s.Status,
-                    CreatedBy = s.CreatedBy,
                     CreatedDate = s.CreatedDate,
                     StartDate = s.StartDate,
                     ToDate = s.ToDate
@@ -41,35 +40,6 @@ namespace Project2.Services
             catch
             {   
                 return GenericResultModel<KeyResponseViewModel>.Failed("Failed to view list of keys");
-            }
-
-        }
-
-        public async Task<GenericResultModel<KeyResponseViewModel>> GenerateKeyAsync(KeyResponseViewModel _key)
-        {
-            try
-            {
-                var currentTime = DateTime.Now;
-                var key = new Key
-                {
-                    //A new random key is generated?
-                    ToolKey = Guid.NewGuid().ToString().ToUpper(),
-                    MachineId = _key.MachineId,                         //How to get this?
-                    ToolId = _key.ToolId,
-                    Status = 1,                                         //Key is active?
-                    // CreatedBy = ?,
-                    CreatedDate = currentTime,
-                    StartDate = currentTime,
-                    ToDate = currentTime.Add(new TimeSpan(365,0,0,0))   //Key expires after 365 days
-                };
-                _dbContext.Keys.Add(key);
-                await _dbContext.SaveChangesAsync();
-
-                return GenericResultModel<KeyResponseViewModel>.Success("Key generated successfully");
-            }
-            catch
-            {   
-                return GenericResultModel<KeyResponseViewModel>.Failed("Failed to generate a new key");
             }
 
         }
@@ -105,26 +75,71 @@ namespace Project2.Services
                 return GenericResultModel<KeyResponseViewModel>.Failed("Failed to delete key");
             }
         }
-          public async Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key)
+        public async Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key)
         {
             try
             {
-                var key = await _dbContext.Keys.FirstOrDefaultAsync(x => x.Id == _key.Id);
+                var s = await _dbContext.Keys.FirstOrDefaultAsync(x => x.Id == _key.Id);
                 var keyView = new KeyResponseViewModel {
-                    ToolKey = key.ToolKey,
-                    MachineId = key.MachineId,
-                    ToolId = key.ToolId,
-                    Status = key.Status,
-                    CreatedBy = key.CreatedBy,
-                    CreatedDate = key.CreatedDate,
-                    StartDate = key.StartDate,
-                    ToDate = key.ToDate 
+                    Id = s.Id,
+                    MachineId = s.MachineId,
+                    ToolId = s.ToolId,
+                    ToolKey = s.ToolKey,
+                    Status = s.Status,
+                    CreatedDate = s.CreatedDate,
+                    StartDate = s.StartDate,
+                    ToDate = s.ToDate
                 };
                 return GenericResultModel<KeyResponseViewModel>.Success(keyView);
             }
             catch
             {   
                 return GenericResultModel<KeyResponseViewModel>.Failed("Failed to get key by ID");
+            }
+        }
+        public async Task<int> GenerateKey(int _ToolId, string _MachineId)
+        {
+            try
+            {
+                var currentTime = DateTime.Now;
+                var key = new Key
+                {
+                    ToolId = _ToolId,
+                    MachineId = _MachineId,
+                    ToolKey = Guid.NewGuid().ToString().ToUpper(),
+                    Status = Constants.StatusPending,                   //Key awaits activation
+                    CreatedDate = currentTime,
+                };
+                _dbContext.Keys.Add(key);
+                await _dbContext.SaveChangesAsync();
+
+                Console.WriteLine("Generate key for this order successfully");
+                return key.Id;
+            }
+            catch
+            {   
+                Console.WriteLine("Failed to generate a new key for this order");
+                return 0;
+            }
+        }
+
+        public async void ActivateKey(Key pendingKey)
+        {
+            try
+            {
+                var currentTime = DateTime.Now;
+
+                pendingKey.Status = Constants.StatusActive;
+                pendingKey.StartDate = currentTime;
+                pendingKey.ToDate = currentTime.Add(new TimeSpan(365,0,0,0));       //Key expires after 365 days
+                _dbContext.Entry(pendingKey).State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+
+                Console.WriteLine("Activate key {0} successfully", pendingKey.Id);
+            }
+            catch
+            {
+                Console.WriteLine("Failed to activate key");
             }
         }
     }

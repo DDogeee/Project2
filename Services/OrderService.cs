@@ -27,7 +27,7 @@ namespace Project2.Services
                 {
                     Id = s.Id,
                     UserId = s.UserId,
-                    OrderDate = s.OrderDate.ToString(),
+                    OrderDate = s.OrderDate,
                     TotalPrice = s.TotalPrice,
                     Status = s.Status
                 }).ToListAsync();
@@ -40,54 +40,126 @@ namespace Project2.Services
             }
 
         }
-
-        public async Task<GenericResultModel<OrderResponseViewModel>> AddOrderAsync(OrderResponseViewModel _order)
-        {
-             var order = new Order 
-                {
-                    UserId = _order.UserId,
-                    OrderDate = DateTime.ParseExact(_order.OrderDate, "yyyy-MM-dd HH:mm:ss.zzz", CultureInfo.InvariantCulture),
-                    TotalPrice = _order.TotalPrice,
-                    Status = _order.Status
-                };
-
-                _dbContext.Orders.Add(order);
-                await _dbContext.SaveChangesAsync();
-                return GenericResultModel<OrderResponseViewModel>.Success("A new order added successfully");
-            // try
-            // {
-
-
-            // }
-            // catch
-            // {   
-            //     return GenericResultModel<OrderResponseViewModel>.Failed("Failed to add a new order");
-            // }
-
-        }
-
-        //Only admins can modify orders, or not?
-        public async Task<GenericResultModel<OrderResponseViewModel>> EditOrderAsync(OrderResponseViewModel _order)
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetPendingOrderAsync()
         {
             try
             {
-                var order = new Order {
-                    Id = _order.Id,
-                    UserId = _order.UserId,
-                    OrderDate = DateTime.ParseExact(_order.OrderDate, "yyyy-MM-dd HH:mm:ss.zzz", CultureInfo.InvariantCulture),
-                    TotalPrice = _order.TotalPrice,
-                    Status = _order.Status
+                var pendingOrders = await _dbContext.Orders.Where(s => s.Status == Constants.StatusPending).Select(s => new OrderResponseViewModel
+                {
+                    Id = s.Id,
+                    UserId = s.UserId,
+                    OrderDate = s.OrderDate,
+                    TotalPrice = s.TotalPrice,
+                    Status = s.Status
+                }).ToListAsync();
+                return GenericResultModel<OrderResponseViewModel>.Success(pendingOrders);
+            }
+            catch
+            {
+                return GenericResultModel<OrderResponseViewModel>.Failed("Failed to view list of pending orders");
+            }
+        }
+        public async Task<GenericResultModel<OrderResponseViewModel>> AddOrderAsync(OrderDataModel _orderData)
+        {
+            try
+            {
+                var currentTime = DateTime.Now;
+                decimal currentPrice = 0;                   //Keep track of prices
+
+                var order = new Order 
+                {
+                    UserId = _orderData.UserId,
+                    OrderDate = currentTime,
+                    TotalPrice = currentPrice,
+                    Status = Constants.StatusPending        //New order awaits admin's approval
                 };
+                _dbContext.Orders.Add(order);
+                await _dbContext.SaveChangesAsync();
+
+                //Add new order details according to the number of tools and their keys in the order
+                var orderDetail = new OrderDetailService(_dbContext);
+                foreach (var tool in _orderData.Tools)
+                {
+                    for (int i = 0; i < tool.NumberOfKeys; i++)
+                    {
+                        var detail = await orderDetail.AddOrderDetailAsync(order, tool);
+                        if (detail.Discount != null)
+                        {
+                            currentPrice += detail.Price * (1 - detail.Discount.Value/100);
+                        }
+                        else 
+                        {
+                            currentPrice += detail.Price;
+                        }
+                    }
+                }
+                
+                //Add the total price of the order into database
+                order.TotalPrice = currentPrice;
                 _dbContext.Entry(order).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
 
-                return GenericResultModel<OrderResponseViewModel>.Success("Order edited successfully");
+                return GenericResultModel<OrderResponseViewModel>.Success("A new order added successfully");
             }
             catch
             {   
-                return GenericResultModel<OrderResponseViewModel>.Failed("Failed to edit order");
+                return GenericResultModel<OrderResponseViewModel>.Failed("Failed to add a new order");
             }
         }
+        public async Task<GenericResultModel<OrderResponseViewModel>> ApproveOrderAsync(OrderResponseViewModel _order)
+        {
+            try
+            {
+                var query = _dbContext.OrderDetails.Join(_dbContext.Keys, 
+                                                                detail => detail.KeyId, 
+                                                                key => key.Id,
+                                                                (detail, key) => new
+                                                                {
+                                                                    _detail = detail,
+                                                                    _key = key
+                                                                }).Where(BothTables => BothTables._detail.OrderId == _order.Id);
+                var keyService = new KeyService(_dbContext);
+                foreach (var item in query)
+                {
+                    keyService.ActivateKey(item._key);
+                }
+                
+                var order = await _dbContext.Orders.FirstOrDefaultAsync(x => x.Id == _order.Id);
+                order.Status = Constants.StatusActive;
+
+                _dbContext.Entry(order).State = EntityState.Modified;
+                await _dbContext.SaveChangesAsync();
+
+                return GenericResultModel<OrderResponseViewModel>.Success("Approve this order successfully");
+            }
+            catch
+            {
+                return GenericResultModel<OrderResponseViewModel>.Failed("Failed to approve this order");
+            }
+
+        }
+        //Only admins can modify orders, or not?
+        // public async Task<GenericResultModel<OrderResponseViewModel>> EditOrderAsync(OrderResponseViewModel _order)
+        // {
+        //     try
+        //     {
+        //         var order = new Order {
+        //             Id = _order.Id,
+        //             UserId = _order.UserId,
+        //             OrderDate = _order.OrderDate,
+        //             TotalPrice = _order.TotalPrice,
+        //             Status = _order.Status
+        //         };
+        //         _dbContext.Entry(order).State = EntityState.Modified;
+        //         await _dbContext.SaveChangesAsync();
+
+        //         return GenericResultModel<OrderResponseViewModel>.Success("Order edited successfully");
+        //     }
+        //     catch
+        //     {   
+        //         return GenericResultModel<OrderResponseViewModel>.Failed("Failed to edit order");
+        //     }
+        // }
         public async Task<GenericResultModel<OrderResponseViewModel>> DeleteOrderAsync(OrderResponseViewModel _order)
         {
             try
@@ -102,17 +174,17 @@ namespace Project2.Services
                 return GenericResultModel<OrderResponseViewModel>.Failed("Failed to delete order");
             }
         }
-          public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order)
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order)
         {
             try
             {
                 var order = await _dbContext.Orders.FirstOrDefaultAsync(x => x.Id == _order.Id);
                 var orderView = new OrderResponseViewModel {
-                    Id = order.Id,
-                    UserId = order.UserId,
-                    OrderDate = order.OrderDate.ToString(),
-                    TotalPrice = order.TotalPrice,
-                    Status = order.Status
+                    Id = _order.Id,
+                    UserId = _order.UserId,
+                    OrderDate = _order.OrderDate,
+                    TotalPrice = _order.TotalPrice,
+                    Status = _order.Status
                 };
                 return GenericResultModel<OrderResponseViewModel>.Success(orderView);
             }

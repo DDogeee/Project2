@@ -11,8 +11,10 @@ namespace Project2.IServices
     public interface IOrderService
     {
         Task<GenericResultModel<OrderResponseViewModel>> GetOrderAsync();
-        Task<GenericResultModel<OrderResponseViewModel>> AddOrderAsync(OrderResponseViewModel _order);
-        Task<GenericResultModel<OrderResponseViewModel>> EditOrderAsync(OrderResponseViewModel _order);
+        Task<GenericResultModel<OrderResponseViewModel>> GetPendingOrderAsync();
+        Task<GenericResultModel<OrderResponseViewModel>> AddOrderAsync(OrderDataModel _orderData);
+        // Task<GenericResultModel<OrderResponseViewModel>> EditOrderAsync(OrderResponseViewModel _order);
+        Task<GenericResultModel<OrderResponseViewModel>> ApproveOrderAsync(OrderResponseViewModel _order);
         Task<GenericResultModel<OrderResponseViewModel>> DeleteOrderAsync(OrderResponseViewModel _order);
         Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order);
 

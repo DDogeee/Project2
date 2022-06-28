@@ -17,7 +17,7 @@ namespace Project2.Services
         }
         public async Task<bool> CheckTokenInBlackListAsync(string token)
         {
-            var isExpiredToken = await _dbContext.ExpiredTokens.FirstOrDefaultAsync(x => x.ExpiredToken == token);
+            var isExpiredToken = await _dbContext.ExpiredTokens.FirstOrDefaultAsync(x => x.ExpiredToken1 == token);
             return isExpiredToken != null;
         }
     }

@@ -21,26 +21,39 @@ namespace Project2.Controllers
             _orderService = orderService;
         }
 
-
-        [HttpGet("danh-sach-don-hang")]
+        [HttpGet("danh-sach")]
         [Authorize]
         public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderAsync()
         {
             return await _orderService.GetOrderAsync();
         }
 
-        [HttpPost("them-don-hang")]
+        [HttpGet("cho-duyet")]
         [Authorize]
-        public async Task<GenericResultModel<OrderResponseViewModel>> AddOrderAsync(OrderResponseViewModel _order)
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetPendingOrderAsync()
         {
-            return await _orderService.AddOrderAsync(_order);
+            return await _orderService.GetPendingOrderAsync();
         }
 
-        [HttpPut("sua-don-hang")]
+        [HttpPost("them-don-hang")]
         [Authorize]
-        public async Task<GenericResultModel<OrderResponseViewModel>> EditToolAsync(OrderResponseViewModel _order)
+        public async Task<GenericResultModel<OrderResponseViewModel>> AddOrderAsync(OrderDataModel _orderData)
         {
-            return await _orderService.EditOrderAsync(_order);
+            return await _orderService.AddOrderAsync(_orderData);
+        }
+
+        // [HttpPut("sua-don-hang")]
+        // [Authorize]
+        // public async Task<GenericResultModel<OrderResponseViewModel>> EditToolAsync(OrderResponseViewModel _order)
+        // {
+        //     return await _orderService.EditOrderAsync(_order);
+        // }
+
+        [HttpPut("duyet-don-hang")]
+        [Authorize]
+        public async Task<GenericResultModel<OrderResponseViewModel>> ApproveOrderAsync(OrderResponseViewModel _order)
+        {
+           return await _orderService.ApproveOrderAsync(_order);
         }
 
         [HttpDelete("xoa-don-hang")]
@@ -50,8 +63,8 @@ namespace Project2.Controllers
             return await _orderService.DeleteOrderAsync(_order);
         }
 
-        [HttpGet("chi-tiet")]
-        public async Task<GenericResultModel<OrderResponseViewModel>> GetToolIdAsync(OrderResponseViewModel _order)
+        [HttpGet("theo-id")]
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order)
         {
             return await _orderService.GetOrderIdAsync(_order);
         }

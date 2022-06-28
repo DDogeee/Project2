@@ -37,7 +37,6 @@ namespace Project2.Services
                         Username = user.Username,
                         Password = user.Password,
                         Phone = user.Phone,
-                        IsDeleted = false,
                     };
 
                     _dbContext.Users.Add(_user);
@@ -75,7 +74,6 @@ namespace Project2.Services
                     IsAdmin = _user.IsAdmin,
                     Username = _user.Username,
                     Phone = _user.Phone,
-                    IsDeleted = _user.IsDeleted,
                     Fullname = _user.Fullname,
                     Email = _user.Email,
                     Status = _user.Status,
@@ -108,9 +106,9 @@ namespace Project2.Services
 
         public GenericResultModel<string> Logout(string token)
         {
-            var _token = new ExpiredTokens
+            var _token = new ExpiredToken
             {
-                ExpiredToken = token
+                ExpiredToken1 = token
             };
             _dbContext.ExpiredTokens.Add(_token);
             _dbContext.SaveChanges();

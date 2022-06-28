@@ -17,7 +17,7 @@ namespace Project2.Models
         {
         }
 
-        public virtual DbSet<ExpiredTokens> ExpiredTokens { get; set; }
+        public virtual DbSet<ExpiredToken> ExpiredTokens { get; set; }
         public virtual DbSet<Key> Keys { get; set; }
         public virtual DbSet<Order> Orders { get; set; }
         public virtual DbSet<OrderDetail> OrderDetails { get; set; }
@@ -29,7 +29,7 @@ namespace Project2.Models
             if (!optionsBuilder.IsConfigured)
             {
 #warning To protect potentially sensitive information in your connection string, you should move it out of source code. You can avoid scaffolding the connection string by using the Name= syntax to read it from configuration - see https://go.microsoft.com/fwlink/?linkid=2131148. For more guidance on storing connection strings, see http://go.microsoft.com/fwlink/?LinkId=723263.
-                optionsBuilder.UseSqlServer("Server=.;Database=ToolManagement;User ID=sa;Password=1");
+                optionsBuilder.UseSqlServer("Server=DESKTOP-C79FE41; Database=ToolManagement; User ID=sa;Password=1;");
             }
         }
 
@@ -37,20 +37,16 @@ namespace Project2.Models
         {
             modelBuilder.HasAnnotation("Relational:Collation", "SQL_Latin1_General_CP1_CI_AS");
 
-            modelBuilder.Entity<ExpiredTokens>(entity =>
+            modelBuilder.Entity<ExpiredToken>(entity =>
             {
-                entity.Property(e => e.ExpiredToken)
+                entity.Property(e => e.ExpiredToken1)
                     .IsRequired()
-                    .HasMaxLength(255)
-                    .HasColumnName("ExpiredToken")
-                    .IsFixedLength(true);
+                    .HasColumnName("ExpiredToken");
             });
 
             modelBuilder.Entity<Key>(entity =>
             {
                 entity.Property(e => e.Id).HasColumnName("ID");
-
-                entity.Property(e => e.CreatedBy).HasMaxLength(50);
 
                 entity.Property(e => e.CreatedDate).HasColumnType("datetime");
 
@@ -77,19 +73,11 @@ namespace Project2.Models
             {
                 entity.ToTable("Order");
 
-                entity.Property(e => e.Id)
-                    .ValueGeneratedOnAdd()
-                    .HasColumnName("ID");
+                entity.Property(e => e.Id).HasColumnName("ID");
 
                 entity.Property(e => e.OrderDate).HasColumnType("datetime");
 
                 entity.Property(e => e.TotalPrice).HasColumnType("decimal(18, 2)");
-
-                entity.HasOne(d => d.IdNavigation)
-                    .WithOne(p => p.Order)
-                    .HasForeignKey<Order>(d => d.Id)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK_Order_OrderDetail");
 
                 entity.HasOne(d => d.User)
                     .WithMany(p => p.Orders)
@@ -111,8 +99,13 @@ namespace Project2.Models
                 entity.HasOne(d => d.Key)
                     .WithMany(p => p.OrderDetails)
                     .HasForeignKey(d => d.KeyId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
                     .HasConstraintName("FK_OrderDetail_Keys");
+
+                entity.HasOne(d => d.Order)
+                    .WithMany(p => p.OrderDetails)
+                    .HasForeignKey(d => d.OrderId)
+                    .OnDelete(DeleteBehavior.ClientSetNull)
+                    .HasConstraintName("FK_OrderDetail_Order");
             });
 
             modelBuilder.Entity<Tool>(entity =>
