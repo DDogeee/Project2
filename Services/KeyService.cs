@@ -123,25 +123,5 @@ namespace Project2.Services
                 return 0;
             }
         }
-
-        public async void ActivateKey(Key pendingKey)
-        {
-            try
-            {
-                var currentTime = DateTime.Now;
-
-                pendingKey.Status = Constants.StatusActive;
-                pendingKey.StartDate = currentTime;
-                pendingKey.ToDate = currentTime.Add(new TimeSpan(365,0,0,0));       //Key expires after 365 days
-                _dbContext.Entry(pendingKey).State = EntityState.Modified;
-                await _dbContext.SaveChangesAsync();
-
-                Console.WriteLine("Activate key {0} successfully", pendingKey.Id);
-            }
-            catch
-            {
-                Console.WriteLine("Failed to activate key {0}", pendingKey.Id);
-            }
-        }
     }
 }
