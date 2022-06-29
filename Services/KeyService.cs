@@ -66,7 +66,8 @@ namespace Project2.Services
             try
             {
                 var key = await _dbContext.Keys.FirstOrDefaultAsync(x => x.Id == _key.Id);
-                _dbContext.Entry(key).State = EntityState.Deleted;
+                key.Status = Constants.StatusDeleted;
+                _dbContext.Entry(key).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
                 return GenericResultModel<KeyResponseViewModel>.Success("Key deleted successfully");
             }
@@ -94,7 +95,7 @@ namespace Project2.Services
             }
             catch
             {   
-                return GenericResultModel<KeyResponseViewModel>.Failed("Failed to get key by ID");
+                return GenericResultModel<KeyResponseViewModel>.Failed("Failed to get key by ID" + _key.Id);
             }
         }
         public async Task<int> GenerateKey(int _ToolId, string _MachineId)
@@ -139,7 +140,7 @@ namespace Project2.Services
             }
             catch
             {
-                Console.WriteLine("Failed to activate key");
+                Console.WriteLine("Failed to activate key {0}", pendingKey.Id);
             }
         }
     }

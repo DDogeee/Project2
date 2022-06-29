@@ -57,7 +57,7 @@ namespace Project2.Services
             }
             catch
             {   
-                return GenericResultModel<OrderDetailResponseViewModel>.Failed("Failed to get order detail by ID");
+                return GenericResultModel<OrderDetailResponseViewModel>.Failed("Failed to get order detail by ID: " + _detail.Id);
             }
         }
         public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(OrderDetailResponseViewModel _detail)

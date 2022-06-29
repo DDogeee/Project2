@@ -51,6 +51,7 @@ namespace Project2
             services.AddTransient<IToolService, ToolService>();
             services.AddTransient<IKeyService, KeyService>();
             services.AddTransient<IOrderService, OrderService>();
+            services.AddTransient<IOrderDetailService, OrderDetailService>();
             services.AddTransient<IUserService, UserService>();
             services.AddTransient<IBlackListTokenService, BlackListTokenService>();
         }

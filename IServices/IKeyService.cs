@@ -14,9 +14,5 @@ namespace Project2.IServices
         Task<GenericResultModel<KeyResponseViewModel>> ExtendKeyAsync(KeyResponseViewModel _key);
         Task<GenericResultModel<KeyResponseViewModel>> DeleteKeyAsync(KeyResponseViewModel _key);
         Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key);
-        //Task<GenericResultModel<KeyResponseViewModel>> GetKeyByOrderIdAsync(KeyResponseViewModel _key);
-
-        // Task<GenericResultModel<KeyResponseViewModel>> GenerateKeyAsync(KeyResponseViewModel _key);
-
     }
 }

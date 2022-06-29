@@ -28,14 +28,6 @@ namespace Project2.Controllers
             return await _KeyService.GetKeyAsync();
         }
 
-        //  No longer generate keys through API directly, but through approving pending orders
-        // [HttpPost("sinh-key")]
-        // [Authorize]
-        // public async Task<GenericResultModel<KeyResponseViewModel>> GenerateKeyAsync(KeyResponseViewModel _key)
-        // {
-        //     return await _KeyService.GenerateKeyAsync(_key);
-        // }
-
         [HttpPut("gia-han-key")]
         [Authorize]
         public async Task<GenericResultModel<KeyResponseViewModel>> ExtendKeyAsync(KeyResponseViewModel _key)

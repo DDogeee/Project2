@@ -42,13 +42,6 @@ namespace Project2.Controllers
             return await _orderService.AddOrderAsync(_orderData);
         }
 
-        // [HttpPut("sua-don-hang")]
-        // [Authorize]
-        // public async Task<GenericResultModel<OrderResponseViewModel>> EditToolAsync(OrderResponseViewModel _order)
-        // {
-        //     return await _orderService.EditOrderAsync(_order);
-        // }
-
         [HttpPut("duyet-don-hang")]
         [Authorize]
         public async Task<GenericResultModel<OrderResponseViewModel>> ApproveOrderAsync(OrderResponseViewModel _order)
@@ -58,7 +51,7 @@ namespace Project2.Controllers
 
         [HttpDelete("xoa-don-hang")]
         [Authorize]
-        public async Task<GenericResultModel<OrderResponseViewModel>> DeleteToolAsync(OrderResponseViewModel _order)
+        public async Task<GenericResultModel<OrderResponseViewModel>> DeleteOrderAsync(OrderResponseViewModel _order)
         {
             return await _orderService.DeleteOrderAsync(_order);
         }
@@ -67,6 +60,13 @@ namespace Project2.Controllers
         public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order)
         {
             return await _orderService.GetOrderIdAsync(_order);
+        }
+        
+        [HttpGet("theo-user")]
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order)
+        {
+            return await GetOrderByUserIdAsync(_order);
+
         }
     }
 }

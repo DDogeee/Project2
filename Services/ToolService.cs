@@ -25,9 +25,9 @@ namespace Project2.Services
             {
                 var tools = await _dbContext.Tools.Select(s => new ToolResponseViewModel
                 {
+                    Id = s.Id,
                     Code = s.Code,
                     Description = s.Description,
-                    Id = s.Id,
                     Image = s.Image,
                     Name = s.Name,
                     Price = s.Price,
@@ -49,14 +49,13 @@ namespace Project2.Services
             {
                 var tool = new Tool 
                 {
-                    Id = _tool.Id,
                     Code = _tool.Code,
                     Name = _tool.Name,
                     Image = _tool.Image,
                     Description = _tool.Description,
                     Price = _tool.Price,
                     Status = _tool.Status,
-                    // CreatedBy = ?,
+                    CreatedBy = _tool.CreatedBy,
                     CreatedDate = DateTime.Now
                 };
 
@@ -83,7 +82,7 @@ namespace Project2.Services
                     Description = _tool.Description,
                     Price = _tool.Price,
                     Status = _tool.Status,
-                    // ModifiedBy = ?,
+                    ModifiedBy = _tool.ModifiedBy,
                     ModifiedDate = DateTime.Now
                 };
                 _dbContext.Entry(tool).State = EntityState.Modified;
@@ -101,12 +100,9 @@ namespace Project2.Services
             try
             {
                 var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
-
-                // _dbContext.Entry(tool).State = EntityState.Deleted;
-                // update the value of IsDeleted instead
-                // tool.DeletedBy = ?;
+                tool.DeletedBy = _tool.DeletedBy;
                 tool.DeletedDate = DateTime.Now;
-
+                tool.Status = Constants.StatusDeleted;
                 _dbContext.Entry(tool).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
                 return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");

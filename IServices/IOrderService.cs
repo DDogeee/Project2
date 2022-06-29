@@ -13,10 +13,11 @@ namespace Project2.IServices
         Task<GenericResultModel<OrderResponseViewModel>> GetOrderAsync();
         Task<GenericResultModel<OrderResponseViewModel>> GetPendingOrderAsync();
         Task<GenericResultModel<OrderResponseViewModel>> AddOrderAsync(OrderDataModel _orderData);
-        // Task<GenericResultModel<OrderResponseViewModel>> EditOrderAsync(OrderResponseViewModel _order);
         Task<GenericResultModel<OrderResponseViewModel>> ApproveOrderAsync(OrderResponseViewModel _order);
         Task<GenericResultModel<OrderResponseViewModel>> DeleteOrderAsync(OrderResponseViewModel _order);
         Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order);
+        Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order);
+
 
 
 
