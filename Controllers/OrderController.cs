@@ -57,12 +57,14 @@ namespace Project2.Controllers
         }
 
         [HttpGet("theo-id")]
+        [Authorize]
         public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order)
         {
             return await _orderService.GetOrderIdAsync(_order);
         }
         
         [HttpGet("theo-user")]
+        [Authorize]
         public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order)
         {
             return await GetOrderByUserIdAsync(_order);

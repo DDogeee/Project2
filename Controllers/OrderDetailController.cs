@@ -36,6 +36,7 @@ namespace Project2.Controllers
         }
 
         [HttpGet("theo-don-hang")]
+        [Authorize]
         public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(OrderDetailResponseViewModel _detail)
         {
             return await _orderDetailService.GetOrderDetailByOrderIdAsync(_detail);

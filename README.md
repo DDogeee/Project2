@@ -1,4 +1,4 @@
-# Cần sửa api "Logout" và "Get Order by UserId"
+# Cần sửa api "Get Order by UserId"
 
 # Project 2: Tool Management (Quản lí key phần mềm)
 ## Mục lục
@@ -34,6 +34,9 @@ c. Sửa lại file Project2/appsettings.Development.json, thay vào tên SQL Se
 - `-2`: Deleted - Tool/Key/Order được đánh dấu là bị xoá (tuy nhiên vẫn tồn tại trong cơ sở dữ liệu)
 
 ### 3. Các APIs:  
+
+(Ngoại trừ các API Login, Register, Get Tool, Get Tool by ID, các API còn lại đều cần bearer token. Bearer token có thể nhận được sau khi đăng nhập thành công)
+
 ### User
 
 - **[POST request] Login (Đăng nhập)**
@@ -90,7 +93,7 @@ curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-ki
 }'
 ```
 
-- **[POST request] Logout (Đăng xuất)** - *(Hiện đang có bug?)*
+- **[POST request] Logout (Đăng xuất)**
 
 Link:  
 ```
