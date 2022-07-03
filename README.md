@@ -2,14 +2,14 @@
 
 # Project 2: Tool Management (Quản lí key phần mềm)
 ## Mục lục
-1. [Ngay sau khi clone git](https://github.com/DDogeee/Project2/master/README.md#1-ngay-sau-khi-clone-git) 
-2. [Trạng thái của tool/order/key](https://github.com/DDogeee/Project2/master/README.md#2-tr%E1%BA%A1ng-th%C3%A1i-c%E1%BB%A7a-toolorderkey)
-3. [Các APIs](https://github.com/DDogeee/Project2/master/README.md#3-c%C3%A1c-apis)
-    - [User](https://github.com/DDogeee/Project2/master/README.md#user)
-    - [Tool](https://github.com/DDogeee/Project2/master/README.md#tool)
-    - [Order](https://github.com/DDogeee/Project2/master/README.md#order)
-    - [Key](https://github.com/DDogeee/Project2/master/README.md#key)
-    - [Order detail](https://github.com/DDogeee/Project2/master/README.md#order-detail)
+1. [Ngay sau khi clone git](https://github.com/DDogeee/Project2/blob/master/README.md#1-ngay-sau-khi-clone-git)
+2. [Trạng thái của tool/order/key](https://github.com/DDogeee/Project2/blob/master/README.md#2-tr%E1%BA%A1ng-th%C3%A1i-c%E1%BB%A7a-toolorderkey)
+3. [Các APIs](https://github.com/DDogeee/Project2/blob/master/README.md#3-c%C3%A1c-apis)
+    - [User](https://github.com/DDogeee/Project2/blob/master/README.md#user)
+    - [Tool](https://github.com/DDogeee/Project2/blob/master/README.md#tool)
+    - [Order](https://github.com/DDogeee/Project2/blob/master/README.md#order)
+    - [Key](https://github.com/DDogeee/Project2/blob/master/README.md#key)
+    - [Order detail](https://github.com/DDogeee/Project2/blob/master/README.md#order-detail)
 
 ### 1. Ngay sau khi clone git: 
 a. Khôi phục bản backup ToolManagement.bak theo hướng dẫn sau: 
