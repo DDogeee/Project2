@@ -120,10 +120,10 @@ namespace Project2.Services
             try
             {
                 var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
-                tool.DeletedBy = _tool.DeletedBy;
-                tool.DeletedDate = DateTime.Now;
-                tool.Status = Constants.StatusDeleted;
-                _dbContext.Entry(tool).State = EntityState.Modified;
+                // tool.DeletedBy = _tool.DeletedBy;
+                // tool.DeletedDate = DateTime.Now;
+                // tool.Status = Constants.StatusDeleted;
+                _dbContext.Entry(tool).State = EntityState.Deleted;
                 await _dbContext.SaveChangesAsync();
                 return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");
             }
