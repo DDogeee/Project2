@@ -63,12 +63,12 @@ namespace Project2.Controllers
             return await _orderService.GetOrderIdAsync(_order);
         }
         
-        [HttpGet("theo-user")]
-        [Authorize]
-        public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order)
-        {
-            return await GetOrderByUserIdAsync(_order);
+        // [HttpGet("theo-user")]
+        // [Authorize]
+        // public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order)
+        // {
+        //     return await GetOrderByUserIdAsync(_order);
 
-        }
+        // }
     }
 }

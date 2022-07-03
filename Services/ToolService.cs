@@ -88,7 +88,17 @@ namespace Project2.Services
                 _dbContext.Entry(tool).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
 
-                return GenericResultModel<ToolResponseViewModel>.Success("Tool edited successfully");
+                var toolView = new ToolResponseViewModel {
+                    Id = tool.Id,
+                    Code = tool.Code,
+                    Name = tool.Name,
+                    Image = tool.Image,
+                    Description = tool.Description,
+                    Price = tool.Price,
+                    Status = tool.Status,
+                };
+
+                return GenericResultModel<ToolResponseViewModel>.Success(toolView);
             }
             catch
             {   

@@ -177,24 +177,25 @@ namespace Project2.Services
                 return GenericResultModel<OrderResponseViewModel>.Failed("Failed to get order by ID");
             }
         }
-        public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order)
-        {
-            try
-            {
-                var userOrders = await _dbContext.Orders.Where(s => s.UserId == _order.UserId).Select(s => new OrderResponseViewModel
-                {
-                    Id = s.Id,
-                    UserId = s.UserId,
-                    OrderDate = s.OrderDate,
-                    TotalPrice = s.TotalPrice,
-                    Status = s.Status
-                }).ToListAsync();
-                return GenericResultModel<OrderResponseViewModel>.Success(userOrders);
-            }
-            catch
-            {
-                return GenericResultModel<OrderResponseViewModel>.Failed("Failed to view list of orders by userID: " + _order.UserId);
-            }
-        }
+        // Stack overflow when called, didn't enter breakpoints inside function when debugging
+        // public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order)
+        // {
+        //     try
+        //     {
+        //         var userOrders = await _dbContext.Orders.Where(s => s.UserId == _order.UserId).Select(s => new OrderResponseViewModel
+        //         {
+        //             Id = s.Id,
+        //             UserId = s.UserId,
+        //             OrderDate = s.OrderDate,
+        //             TotalPrice = s.TotalPrice,
+        //             Status = s.Status
+        //         }).ToListAsync();
+        //         return GenericResultModel<OrderResponseViewModel>.Success(userOrders);
+        //     }
+        //     catch
+        //     {
+        //         return GenericResultModel<OrderResponseViewModel>.Failed("Failed to view list of orders by userID: " + _order.UserId);
+        //     }
+        // }
     }
 }
