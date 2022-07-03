@@ -1,5 +1,3 @@
-# Cần sửa api "Get Order by UserId"
-
 # Project 2: Tool Management (Quản lí key phần mềm)
 ## Mục lục
 1. [Ngay sau khi clone git](https://github.com/DDogeee/Project2/blob/master/README.md#1-ngay-sau-khi-clone-git)
@@ -225,7 +223,7 @@ curl --location --request PUT 'https://localhost:44394/api/quan-ly-tool/sua-tool
 }'
 ```
 
-- **[DELETE request] Delete Tool (Xoá tool)**
+- **[PUT request] Delete Tool (Xoá tool)**
 
 Link:  
 ```
@@ -242,7 +240,7 @@ JSON:
 
 Curl command:
 ```
-curl --location --request DELETE 'https://localhost:44394/api/quan-ly-tool/xoa-tool' \
+curl --location --request PUT 'https://localhost:44394/api/quan-ly-tool/xoa-tool' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "ID": 1,
@@ -393,7 +391,7 @@ curl --location --request PUT 'https://localhost:44394/api/quan-ly-don-hang/duye
 }'
 ```
 
-- **[DELETE request] Delete Order (Xoá đơn hàng)**
+- **[PUT request] Delete Order (Xoá đơn hàng)**
 
 Link:  
 ```
@@ -409,7 +407,7 @@ JSON:
 
 Curl command:
 ```
-curl --location --request DELETE 'https://localhost:44394/api/quan-ly-don-hang/xoa-don-hang' \
+curl --location --request PUT 'https://localhost:44394/api/quan-ly-don-hang/xoa-don-hang' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "Id": 1
@@ -507,7 +505,7 @@ curl --location --request PUT 'https://localhost:44394/api/quan-ly-key/gia-han-k
 }'
 ```
 
-- **[DELETE request] Delete Key (Xoá key)**
+- **[PUT request] Delete Key (Xoá key)**
 
 Link:  
 ```
@@ -523,7 +521,7 @@ JSON:
 
 Curl command:
 ```
-curl --location --request DELETE 'https://localhost:44394/api/quan-ly-key/xoa-key' \
+curl --location --request PUT 'https://localhost:44394/api/quan-ly-key/xoa-key' \
 --header 'Content-Type: application/json' \
 --data-raw '{
     "Id": 1

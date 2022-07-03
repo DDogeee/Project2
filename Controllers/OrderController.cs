@@ -49,7 +49,7 @@ namespace Project2.Controllers
            return await _orderService.ApproveOrderAsync(_order);
         }
 
-        [HttpDelete("xoa-don-hang")]
+        [HttpPut("xoa-don-hang")]
         [Authorize]
         public async Task<GenericResultModel<OrderResponseViewModel>> DeleteOrderAsync(OrderResponseViewModel _order)
         {

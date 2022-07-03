@@ -18,7 +18,6 @@ namespace Project2.Services
         {
             _dbContext = db;
         }
-
         public async Task<GenericResultModel<ToolResponseViewModel>> GetToolAsync()
         {
             try
@@ -40,7 +39,6 @@ namespace Project2.Services
             {   
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to view list of tools");
             }
-
         }
 
         public async Task<GenericResultModel<ToolResponseViewModel>> AddToolAsync(ToolResponseViewModel _tool)
@@ -120,12 +118,19 @@ namespace Project2.Services
             try
             {
                 var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
-                // tool.DeletedBy = _tool.DeletedBy;
-                // tool.DeletedDate = DateTime.Now;
-                // tool.Status = Constants.StatusDeleted;
-                _dbContext.Entry(tool).State = EntityState.Deleted;
-                await _dbContext.SaveChangesAsync();
-                return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");
+
+                if (tool.Status == Constants.StatusDeleted) {
+                    return GenericResultModel<ToolResponseViewModel>.Success("Tool already deleted");
+                }
+                else 
+                {
+                    tool.DeletedBy = _tool.DeletedBy;
+                    tool.DeletedDate = DateTime.Now;
+                    tool.Status = Constants.StatusDeleted;
+                    _dbContext.Entry(tool).State = EntityState.Modified;
+                    await _dbContext.SaveChangesAsync();
+                    return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");
+                }
             }
             catch
             {   

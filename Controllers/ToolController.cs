@@ -42,7 +42,7 @@ namespace Project2.Controllers
             return await _toolService.EditToolAsync(_tool);
         }
 
-        [HttpDelete("xoa-tool")]
+        [HttpPut("xoa-tool")]
         [Authorize]
         public async Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(ToolResponseViewModel _tool)
         {

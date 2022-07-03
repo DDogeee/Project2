@@ -35,7 +35,7 @@ namespace Project2.Controllers
             return await _KeyService.ExtendKeyAsync(_key);
         }
 
-        [HttpDelete("xoa-key")]
+        [HttpPut("xoa-key")]
         [Authorize]
         public async Task<GenericResultModel<KeyResponseViewModel>> DeleteKeyAsync(KeyResponseViewModel _key)
         {
