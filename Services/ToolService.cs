@@ -62,8 +62,17 @@ namespace Project2.Services
                 _dbContext.Tools.Add(tool);
                 await _dbContext.SaveChangesAsync();
 
-                return GenericResultModel<ToolResponseViewModel>.Success("Tool added successfully");
-            }
+                var toolView = new ToolResponseViewModel {
+                    Id = tool.Id,
+                    Code = tool.Code,
+                    Name = tool.Name,
+                    Image = tool.Image,
+                    Description = tool.Description,
+                    Price = tool.Price,
+                    Status = tool.Status,
+                };
+
+                return GenericResultModel<ToolResponseViewModel>.Success(toolView);            }
             catch
             {   
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to add tool");
