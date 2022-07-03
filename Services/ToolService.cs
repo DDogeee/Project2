@@ -72,7 +72,8 @@ namespace Project2.Services
                     Status = tool.Status,
                 };
 
-                return GenericResultModel<ToolResponseViewModel>.Success(toolView);            }
+                return GenericResultModel<ToolResponseViewModel>.Success(toolView);            
+            }
             catch
             {   
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to add tool");
