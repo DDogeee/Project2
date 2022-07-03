@@ -17,8 +17,6 @@ namespace Project2.Controllers
 {
     [Route("api/quan-ly-user")]
     [ApiController]
-
-    
     public class UserController : ControllerBase
     {
         private readonly IConfiguration _config;
@@ -30,7 +28,6 @@ namespace Project2.Controllers
             _config = config;
         }
 
-
         [HttpPost]
         [Route("dang-nhap")]
         public GenericResultModel<JsonResult> Login(UserResponseViewModel user)
@@ -40,11 +37,10 @@ namespace Project2.Controllers
 
         [HttpGet]
         [Authorize]
-
         [Route("chi-tiet")]
-        public JsonResult GetUserId(int id)
+        public GenericResultModel<UserResponseViewModel> GetUserId(UserResponseViewModel user)
         {
-            return _userService.GetUserId(id);
+            return _userService.GetUserId(user);
         }
         
         [HttpPost]
@@ -59,7 +55,7 @@ namespace Project2.Controllers
         public async Task<GenericResultModel<string>> Logout()
         {
             //var key = Guid.NewGuid().ToString().ToUpper();
-            var accessToken = await HttpContext.GetTokenAsync("access_token");
+            var accessToken = await HttpContext.GetTokenAsync("access_token");      //null for me?
             return _userService.Logout(accessToken);
         }
     }

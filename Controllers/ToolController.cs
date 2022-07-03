@@ -23,7 +23,7 @@ namespace Project2.Controllers
 
 
         [HttpGet("danh-sach-tool")]
-        public async Task<GenericResultModel<ToolResponseViewModel>> GetTool()
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolAsync()
         {
             return await _toolService.GetToolAsync();
         }

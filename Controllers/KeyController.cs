@@ -28,13 +28,6 @@ namespace Project2.Controllers
             return await _KeyService.GetKeyAsync();
         }
 
-        [HttpPost("sinh-key")]
-        [Authorize]
-        public async Task<GenericResultModel<KeyResponseViewModel>> GenerateKeyAsync(KeyResponseViewModel _key)
-        {
-            return await _KeyService.GenerateKeyAsync(_key);
-        }
-
         [HttpPut("gia-han-key")]
         [Authorize]
         public async Task<GenericResultModel<KeyResponseViewModel>> ExtendKeyAsync(KeyResponseViewModel _key)
@@ -49,7 +42,7 @@ namespace Project2.Controllers
             return await _KeyService.DeleteKeyAsync(_key);
         }
 
-        [HttpGet("chi-tiet")]
+        [HttpGet("theo-id")]
         [Authorize]
         public async Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key)
         {

@@ -25,9 +25,9 @@ namespace Project2.Services
             {
                 var tools = await _dbContext.Tools.Select(s => new ToolResponseViewModel
                 {
+                    Id = s.Id,
                     Code = s.Code,
                     Description = s.Description,
-                    Id = s.Id,
                     Image = s.Image,
                     Name = s.Name,
                     Price = s.Price,
@@ -49,21 +49,30 @@ namespace Project2.Services
             {
                 var tool = new Tool 
                 {
-                    Id = _tool.Id,
                     Code = _tool.Code,
                     Name = _tool.Name,
                     Image = _tool.Image,
                     Description = _tool.Description,
                     Price = _tool.Price,
                     Status = _tool.Status,
-                    // CreatedBy = ?,
+                    CreatedBy = _tool.CreatedBy,
                     CreatedDate = DateTime.Now
                 };
 
                 _dbContext.Tools.Add(tool);
                 await _dbContext.SaveChangesAsync();
 
-                return GenericResultModel<ToolResponseViewModel>.Success("Tool added successfully");
+                var toolView = new ToolResponseViewModel {
+                    Id = tool.Id,
+                    Code = tool.Code,
+                    Name = tool.Name,
+                    Image = tool.Image,
+                    Description = tool.Description,
+                    Price = tool.Price,
+                    Status = tool.Status,
+                };
+
+                return GenericResultModel<ToolResponseViewModel>.Success(toolView);            
             }
             catch
             {   
@@ -83,13 +92,23 @@ namespace Project2.Services
                     Description = _tool.Description,
                     Price = _tool.Price,
                     Status = _tool.Status,
-                    // ModifiedBy = ?,
+                    ModifiedBy = _tool.ModifiedBy,
                     ModifiedDate = DateTime.Now
                 };
                 _dbContext.Entry(tool).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
 
-                return GenericResultModel<ToolResponseViewModel>.Success("Tool edited successfully");
+                var toolView = new ToolResponseViewModel {
+                    Id = tool.Id,
+                    Code = tool.Code,
+                    Name = tool.Name,
+                    Image = tool.Image,
+                    Description = tool.Description,
+                    Price = tool.Price,
+                    Status = tool.Status,
+                };
+
+                return GenericResultModel<ToolResponseViewModel>.Success(toolView);
             }
             catch
             {   
@@ -101,13 +120,9 @@ namespace Project2.Services
             try
             {
                 var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
-
-                // _dbContext.Entry(tool).State = EntityState.Deleted;
-                // update the value of IsDeleted instead
-                tool.IsDeleted = true;
-                // tool.DeletedBy = ?;
+                tool.DeletedBy = _tool.DeletedBy;
                 tool.DeletedDate = DateTime.Now;
-
+                tool.Status = Constants.StatusDeleted;
                 _dbContext.Entry(tool).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
                 return GenericResultModel<ToolResponseViewModel>.Success("Tool deleted successfully");
@@ -117,7 +132,7 @@ namespace Project2.Services
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to delete tool");
             }
         }
-          public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(ToolResponseViewModel _tool)
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(ToolResponseViewModel _tool)
         {
             try
             {
@@ -136,6 +151,21 @@ namespace Project2.Services
             catch
             {   
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to get tool by ID");
+            }
+        }
+        public async Task<decimal> GetToolPriceByIdAsync(int _toolId)
+        {
+            try
+            {
+                var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _toolId);
+
+                Console.WriteLine("Get price for this tool successfully");
+                return tool.Price;
+            }
+            catch
+            {   
+                Console.WriteLine("Failed to get price for this tool");
+                return 0;
             }
         }
     }

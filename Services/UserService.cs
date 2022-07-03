@@ -37,22 +37,20 @@ namespace Project2.Services
                         Username = user.Username,
                         Password = user.Password,
                         Phone = user.Phone,
-                        IsDeleted = false,
+                        Status = Constants.StatusActive
                     };
 
                     _dbContext.Users.Add(_user);
                     _dbContext.SaveChanges();
+
+                    user.Id = _user.Id;
                     return GenericResultModel<UserResponseViewModel>.Success(user);
                 }
                 else
                 {
                     return GenericResultModel<UserResponseViewModel>.Failed("Username already exist");
-                } 
-                    
-                   
+                }        
             }
-                
-
             catch
             {
                 return GenericResultModel<UserResponseViewModel>.Failed("Something went wrong");
@@ -61,8 +59,6 @@ namespace Project2.Services
         }
         public GenericResultModel<JsonResult> Login(UserResponseViewModel user)
         {
-
-
             var _user = _dbContext.Users.SingleOrDefault(x => x.Username == user.Username && x.Password == user.Password);
 
             // return null if user not found
@@ -75,11 +71,9 @@ namespace Project2.Services
                     IsAdmin = _user.IsAdmin,
                     Username = _user.Username,
                     Phone = _user.Phone,
-                    IsDeleted = _user.IsDeleted,
                     Fullname = _user.Fullname,
                     Email = _user.Email,
                     Status = _user.Status,
-
                 };
                 var jwt = new JwtService(_config);
                 
@@ -87,30 +81,36 @@ namespace Project2.Services
                 var data = new {token = token, user=__user};
                 return GenericResultModel<JsonResult>.Success(new JsonResult(data));
             }
-
-
         }
 
-        public JsonResult GetUserId(int id)
+        public GenericResultModel<UserResponseViewModel> GetUserId(UserResponseViewModel _user)
         {
             try
             {
-                var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
-                var data = new { has_error = "no", message = "successfully get tool", data = user };
-                return new JsonResult(data);
+                var user = _dbContext.Users.FirstOrDefault(x => x.Id == _user.Id);
+                var userView = new UserResponseViewModel
+                {
+                    Id = user.Id,
+                    IsAdmin = user.IsAdmin,
+                    Username = user.Username,
+                    Phone = user.Phone,
+                    Fullname = user.Fullname,
+                    Email = user.Email,
+                    Status = user.Status,
+                };
+                return GenericResultModel<UserResponseViewModel>.Success(userView);
             }
             catch
             {
-                var data = new { has_error = "yes", message = "something went wrong" };
-                return new JsonResult(data);
+                return GenericResultModel<UserResponseViewModel>.Success("Failed to get information from this user Id: " + _user.Id);
             }
         }
 
         public GenericResultModel<string> Logout(string token)
         {
-            var _token = new ExpiredTokens
+            var _token = new ExpiredToken
             {
-                ExpiredToken = token
+                ExpiredToken1 = token
             };
             _dbContext.ExpiredTokens.Add(_token);
             _dbContext.SaveChanges();
