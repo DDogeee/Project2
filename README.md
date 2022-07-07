@@ -234,7 +234,7 @@ https://localhost:44394/api/quan-ly-don-hang/them-don-hang
 JSON:
 ```json
 {
-    "UserId": "phamvudung",
+    "Username": "phamvudung",
     "Tools": 
     [
         {
