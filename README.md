@@ -4,10 +4,33 @@
 2. [Trạng thái của tool/order/key](https://github.com/DDogeee/Project2/blob/master/README.md#2-tr%E1%BA%A1ng-th%C3%A1i-c%E1%BB%A7a-toolorderkey)
 3. [Các APIs](https://github.com/DDogeee/Project2/blob/master/README.md#3-c%C3%A1c-apis)
     - [User](https://github.com/DDogeee/Project2/blob/master/README.md#user)
+      - [Đăng nhập](https://github.com/DDogeee/Project2/blob/master/README.md#--post-request-login-%C4%91%C4%83ng-nh%E1%BA%ADp)
+      - [Đăng kí](https://github.com/DDogeee/Project2/blob/master/README.md#--post-request-register-%C4%91%C4%83ng-k%C3%AD)
+      - [Đăng xuất](https://github.com/DDogeee/Project2/blob/master/README.md#--post-request-logout-%C4%91%C4%83ng-xu%E1%BA%A5t)
+      - [Xem thông tin người dùng bằng ID](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-user-by-id-xem-th%C3%B4ng-tin-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-qua-id)
     - [Tool](https://github.com/DDogeee/Project2/blob/master/README.md#tool)
+      - [Lấy danh sách các tool](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-tool-l%E1%BA%A5y-danh-s%C3%A1ch-c%C3%A1c-tool)
+      - [Thêm tool](https://github.com/DDogeee/Project2/blob/master/README.md#--post-request-add-tool-th%C3%AAm-tool)
+      - [Sửa thông tin tool](https://github.com/DDogeee/Project2/blob/master/README.md#--put-request-edit-tool-s%E1%BB%ADa-th%C3%B4ng-tin-tool)
+      - [Xoá tool](https://github.com/DDogeee/Project2/blob/master/README.md#--put-request-delete-tool-xo%C3%A1-tool)
+      - [Xem thông tin tool bằng ID](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-tool-by-id-xem-th%C3%B4ng-tin-c%E1%BB%A7a-tool-theo-id)
     - [Order](https://github.com/DDogeee/Project2/blob/master/README.md#order)
+      - [Lấy danh sách đơn hàng](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-order-l%E1%BA%A5y-danh-s%C3%A1ch-c%C3%A1c-%C4%91%C6%A1n-h%C3%A0ng)
+      - [Lấy danh sách đơn hàng đang chờ duyệt](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-pending-order-l%E1%BA%A5y-danh-s%C3%A1ch-c%C3%A1c-%C4%91%C6%A1n-h%C3%A0ng-%C4%91ang-ch%E1%BB%9D-duy%E1%BB%87t)
+      - [Thêm đơn hàng mới](https://github.com/DDogeee/Project2/blob/master/README.md#--post-request-add-order-th%C3%AAm-%C4%91%C6%A1n-h%C3%A0ng-m%E1%BB%9Bi)
+      - [Duyệt đơn hàng](https://github.com/DDogeee/Project2/blob/master/README.md#--put-request-approve-order-duy%E1%BB%87t-%C4%91%C6%A1n-h%C3%A0ng)
+      - [Xoá đơn hàng](https://github.com/DDogeee/Project2/blob/master/README.md#--put-request-delete-order-xo%C3%A1-%C4%91%C6%A1n-h%C3%A0ng)
+      - [Xem đơn hàng bằng ID](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-order-by-id-xem-%C4%91%C6%A1n-h%C3%A0ng-qua-id)
+      - [Xem lịch sử đặt hàng của người dùng bằng userId](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-order-by-userid-l%E1%BA%A5y-c%C3%A1c-%C4%91%C6%A1n-h%C3%A0ng-c%E1%BB%A7a-m%E1%BB%99t-userid---l%E1%BB%97i-stack-overflow)
     - [Key](https://github.com/DDogeee/Project2/blob/master/README.md#key)
+      - [Lấy danh sách các key](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-key-xem-to%C3%A0n-b%E1%BB%99-danh-s%C3%A2ch-c%C3%A1c-key)
+      - [Gia hạn thời gian cho key](https://github.com/DDogeee/Project2/blob/master/README.md#--put-request-extend-key-gia-h%E1%BA%A1n-th%E1%BB%9Di-gian-cho-key)
+      - [Xoá key](https://github.com/DDogeee/Project2/blob/master/README.md#--put-request-delete-key-xo%C3%A1-key)
+      - [Xem key bằng ID](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-key-by-id-xem-key-theo-id)  
     - [Order detail](https://github.com/DDogeee/Project2/blob/master/README.md#order-detail)
+      - [Lấy danh sách các Order Detail](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-order-detail-l%E1%BA%A5y-danh-s%C3%A1ch-to%C3%A0n-b%E1%BB%99-order-detail)
+      - [Xem Order Detail bằng ID](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-order-detail-by-id-xem-order-detail-theo-id)
+      - [Xem các Order Detail của cùng một Order](https://github.com/DDogeee/Project2/blob/master/README.md#--get-request-get-order-detail-by-orderid-xem-order-detail-theo-orderid)
 
 ### 1. Ngay sau khi clone git: 
 a. Khôi phục bản backup ToolManagement.bak theo hướng dẫn sau: 
@@ -33,11 +56,11 @@ c. Sửa lại file Project2/appsettings.Development.json, thay vào tên SQL Se
 
 ### 3. Các APIs:  
 
-(Ngoại trừ các API Login, Register, Get Tool, Get Tool by ID, các API còn lại đều cần bearer token. Bearer token có thể nhận được sau khi đăng nhập thành công)
+**(Ngoại trừ các API Login, Register, Get Tool, Get Tool by ID, _các API còn lại đều cần bearer token_. Bearer token có thể nhận được sau khi đăng nhập thành công)**
 
 ### User
 
-- **[POST request] Login (Đăng nhập)**
+### - [POST request] Login (Đăng nhập)
 
 Link:  
 ```
@@ -52,17 +75,7 @@ JSON:
 }
 ```
 
-Curl command:
-```
-curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-nhap' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "username" : "phamvudung",
-    "password" : "123456"
-}'
-```
-
-- **[POST request] Register (Đăng kí)**
+### - [POST request] Register (Đăng kí)
 
 Link:  
 ```
@@ -79,19 +92,7 @@ JSON:
 }
 ```
 
-Curl command:
-```
-curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-ki' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "IsAdmin": false,
-    "Username": "phamvudung",
-    "Password": "123456",
-    "Phone": "0346909605"
-}'
-```
-
-- **[POST request] Logout (Đăng xuất)**
+### - [POST request] Logout (Đăng xuất)
 
 Link:  
 ```
@@ -100,41 +101,25 @@ https://localhost:44394/api/quan-ly-user/dang-xuat
 
 JSON: Để trống
 
-Curl command:
+### - [GET request] Get User by ID (Xem thông tin người dùng qua ID)
+
+Link (thay [id] trong đường dẫn bằng con số id của user, không có dấu ngoặc vuông):  
 ```
-curl --location --request POST 'https://localhost:44394/api/quan-ly-user/dang-xuat' \
---header 'Content-Type: application/json' \
---data-raw '{
-    
-}'
+https://localhost:44394/api/quan-ly-user/chi-tiet/[id]
 ```
 
-- **[GET request] Get User by ID (Xem thông tin người dùng qua ID)**
-
-Link:  
+Ví dụ:
 ```
-https://localhost:44394/api/quan-ly-user/chi-tiet
+https://localhost:44394/api/quan-ly-user/chi-tiet/1
 ```
 
-JSON:
-```json
-{
-    "id": 1
-}
-```
+sẽ lấy thông tin của người dùng có id == 1
 
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-user/chi-tiet' \
---header 'Content-Type: application/json' \
---data-raw '{
-        "id": 1
-}'
-```
+JSON: Để trống
 
 ### Tool
 
-- **[GET request] Get Tool (Lấy danh sách các tool)**
+### - [GET request] Get Tool (Lấy danh sách các tool)
 
 Link:  
 ```
@@ -143,16 +128,7 @@ https://localhost:44394/api/quan-ly-tool/danh-sach-tool
 
 JSON: Để trống
 
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-tool/danh-sach-tool' \
---header 'Content-Type: application/json' \
---data-raw '{
-
-}'
-```
-
-- **[POST request] Add Tool (Thêm tool)**
+### - [POST request] Add Tool (Thêm tool)
 
 Link:  
 ```
@@ -172,22 +148,7 @@ JSON:
 }
 ```
 
-Curl command:
-```
-curl --location --request POST 'https://localhost:44394/api/quan-ly-tool/them-tool' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Code": "code gì đó",
-    "Name": "Tool reg hotmail số lượng lớn[Chạy đa luồng]",
-    "Image": null,
-    "Description": " - Hỗ trợ Fake ip đa dạng. ",
-    "Price": 2500000,
-    "Status": 1,
-    "CreatedBy": "phamvudung"
-}'
-```
-
-- **[PUT request] Edit Tool (Sửa thông tin tool)**
+### - [PUT request] Edit Tool (Sửa thông tin tool)
 
 Link:  
 ```
@@ -207,23 +168,7 @@ JSON:
 }
 ```
 
-Curl command:
-```
-
-curl --location --request PUT 'https://localhost:44394/api/quan-ly-tool/sua-tool' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "ID": 1,
-    "Code": "LLLLLL",
-    "Name": "Key phần mềm nào đó",
-    "Description": ":D",
-    "Price": 67676767,
-    "Status": 1,
-    "ModifiedBy": "phamvudung"
-}'
-```
-
-- **[PUT request] Delete Tool (Xoá tool)**
+### - [PUT request] Delete Tool (Xoá tool)
 
 Link:  
 ```
@@ -238,42 +183,24 @@ JSON:
 }
 ```
 
-Curl command:
+### - [GET request] Get Tool by ID (Xem thông tin của tool theo ID)
+
+Link (thay [id] trong đường dẫn bằng con số id của tool, không có dấu ngoặc vuông):  
 ```
-curl --location --request PUT 'https://localhost:44394/api/quan-ly-tool/xoa-tool' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "ID": 1,
-    "DeletedBy": "phamvudung"
-}'
+https://localhost:5001/api/quan-ly-tool/chi-tiet/[id]
 ```
 
-- **[GET request] Get Tool by ID (Xem thông tin của tool theo ID)**
+Ví dụ:
+```
+https://localhost:5001/api/quan-ly-tool/chi-tiet/1
+```
+sẽ lấy thông tin của tool có id == 1
 
-Link:  
-```
-https://localhost:44394/api/quan-ly-tool/chi-tiet
-```
-
-JSON:
-```json
-{
-    "ID": 1
-}
-```
-
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-tool/chi-tiet' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "ID": 1
-}'
-```
+JSON: Để trống
 
 ### Order
 
-- **[GET request] Get Order (Lấy danh sách các đơn hàng)**
+### - [GET request] Get Order (Lấy danh sách các đơn hàng)
 
 Link:  
 ```
@@ -282,16 +209,7 @@ https://localhost:44394/api/quan-ly-don-hang/danh-sach
 
 JSON: Để trống
 
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-don-hang/danh-sach' \
---header 'Content-Type: application/json' \
---data-raw '{
-
-}'
-```
-
-- **[GET request] Get Pending Order (Lấy danh sách các đơn hàng đang chờ duyệt)**
+### - [GET request] Get Pending Order (Lấy danh sách các đơn hàng đang chờ duyệt)
 
 Link:  
 ```
@@ -300,16 +218,7 @@ https://localhost:44394/api/quan-ly-don-hang/cho-duyet
 
 JSON: Để trống
 
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-don-hang/cho-duyet' \
---header 'Content-Type: application/json' \
---data-raw '{
-
-}'
-```
-
-- **[POST request] Add Order (Thêm đơn hàng mới)**
+### - [POST request] Add Order (Thêm đơn hàng mới)
 
 Mỗi một khách hàng có thể tạo một đơn hàng, và trong đó có nhiều tool khác nhau, tương ứng với mỗi tool đã chọn sẽ là số lượng key mà khách hàng muốn mua. 
 
@@ -344,31 +253,7 @@ JSON:
 }
 ```
 
-Curl command:
-```
-curl --location --request POST 'https://localhost:44394/api/quan-ly-don-hang/them-don-hang' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "UserId": 1,
-    "Tools": 
-    [
-        {
-            "ToolId": 1,
-            "NumberOfKeys": 2,
-            "Discount": 95,
-            "MachineId": "cc00f1dc-fceb-42e0-8217-3ee6e4b73ab9"
-        },
-        {
-            "ToolId": 11,
-            "NumberOfKeys": 3,
-            "Discount": 0,
-            "MachineId": "76ad5816-f66a-450a-b650-070dec110df1"
-        }
-    ]
-}'
-```
-
-- **[PUT request] Approve Order (Duyệt đơn hàng)**
+### - [PUT request] Approve Order (Duyệt đơn hàng)
 
 Link:  
 ```
@@ -382,16 +267,7 @@ JSON:
 }
 ```
 
-Curl command:
-```
-curl --location --request PUT 'https://localhost:44394/api/quan-ly-don-hang/duyet-don-hang' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Id": 1
-}'
-```
-
-- **[PUT request] Delete Order (Xoá đơn hàng)**
+### - [PUT request] Delete Order (Xoá đơn hàng)
 
 Link:  
 ```
@@ -405,64 +281,39 @@ JSON:
 }
 ```
 
-Curl command:
+### - [GET request] Get Order by ID (Xem đơn hàng qua ID)
+
+Link (thay [id] trong đường dẫn bằng con số id của order, không có dấu ngoặc vuông):  
 ```
-curl --location --request PUT 'https://localhost:44394/api/quan-ly-don-hang/xoa-don-hang' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Id": 1
-}'
+https://localhost:5001/api/quan-ly-don-hang/chi-tiet/[id]
 ```
 
-- **[GET request] Get Order by ID (Xem đơn hàng qua ID)**
+Ví dụ:
+```
+https://localhost:5001/api/quan-ly-don-hang/chi-tiet/1
+```
+sẽ lấy thông tin của order có id == 1
 
-Link:  
-```
-https://localhost:44394/api/quan-ly-don-hang/theo-id
-```
+JSON: Để trống
 
-JSON:
-```json
-{
-    "ID": 1
-}
-```
+### - [GET request] Get Order by UserID (Lấy các đơn hàng của một UserID)
 
-Curl command:
+Link (thay [userId] trong đường dẫn bằng con số id của user, không có dấu ngoặc vuông):  
 ```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-don-hang/theo-id' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Id": 1
-}'
+https://localhost:5001/api/quan-ly-don-hang/lich-su/[userId]
 ```
 
-- **[GET request] Get Order by UserID (Lấy các đơn hàng của một UserID)** - *(Lỗi stack overflow)*
+Ví dụ:
+```
+https://localhost:5001/api/quan-ly-don-hang/lich-su/1
+```
+sẽ lấy toàn bộ các order thuộc về user có id == 1
 
-Link:  
-```
-https://localhost:44394/api/quan-ly-don-hang/theo-user
-```
-
-JSON:
-```json
-{
-    "UserId": 1
-}
-```
-
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-don-hang/theo-user' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "UserId": 1
-}'
-```
+JSON: Để trống
 
 ### Key
 
-- **[GET request] Get Key (Xem toàn bộ danh sâch các key)**
+### - [GET request] Get Key (Xem toàn bộ danh sách các key)
 
 Link:  
 ```
@@ -471,18 +322,10 @@ https://localhost:44394/api/quan-ly-key/danh-sach-key
 
 JSON: Để trống
 
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-key/danh-sach-key' \
---header 'Content-Type: application/json' \
---data-raw '{
 
-}'
-```
+### - [PUT request] Extend Key (Gia hạn thời gian cho key)
 
-- **[PUT request] Extend Key (Gia hạn thời gian cho key)**
-
-Key sẽ được kéo dài thời hạn thêm 365 ngày sau khi gọi API này (Cần có nhiều giai đoan hơn?)
+Key sẽ được kéo dài thời hạn thêm 365 ngày sau khi gọi API này (Cần phải bổ sung thêm các giai đoạn khác?)
 
 Link:  
 ```
@@ -496,16 +339,7 @@ JSON:
 }
 ```
 
-Curl command:
-```
-curl --location --request PUT 'https://localhost:44394/api/quan-ly-key/gia-han-key' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Id": 1
-}'
-```
-
-- **[PUT request] Delete Key (Xoá key)**
+### - [PUT request] Delete Key (Xoá key)
 
 Link:  
 ```
@@ -519,41 +353,24 @@ JSON:
 }
 ```
 
-Curl command:
+### - [GET request] Get Key by ID (Xem key theo ID)
+
+Link (thay [id] trong đường dẫn bằng con số id của key, không có dấu ngoặc vuông):  
 ```
-curl --location --request PUT 'https://localhost:44394/api/quan-ly-key/xoa-key' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Id": 1
-}'
+https://localhost:5001/api/quan-ly-key/chi-tiet/[id]
 ```
 
-- **[GET request] Get Key by ID (Xem key theo ID)**
+Ví dụ:
+```
+https://localhost:5001/api/quan-ly-key/chi-tiet/1
+```
+sẽ lấy thông tin về key có id == 1
 
-Link:  
-```
-https://localhost:44394/api/quan-ly-key/theo-id
-```
-
-JSON:
-```json
-{
-    "Id": 1
-}
-```
-
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/quan-ly-key/theo-id' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Id": 1
-}'
-```
+JSON: Để trống
 
 ### Order Detail
 
-- **[GET request] Get Order Detail (Lấy danh sách toàn bộ Order Detail)**
+### - [GET request] Get Order Detail (Lấy danh sách toàn bộ Order Detail)
 
 Link:  
 ```
@@ -562,58 +379,32 @@ https://localhost:44394/api/chi-tiet-don-hang/danh-sach
 
 JSON: Để trống
 
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/chi-tiet-don-hang/danh-sach' \
---header 'Content-Type: application/json' \
---data-raw '{
+### - [GET request] Get Order Detail by ID (Xem Order Detail theo ID)
 
-}'
+Link (thay [id] trong đường dẫn bằng con số id của order detail, không có dấu ngoặc vuông):  
+```
+https://localhost:5001/api/chi-tiet-don-hang/chi-tiet/[id]
 ```
 
+Ví dụ:
+```
+https://localhost:5001/api/chi-tiet-don-hang/chi-tiet/1
+```
+sẽ lấy thông tin về order detail có id == 1
 
-- **[GET request] Get Order Detail by ID (Xem Order Detail theo ID)**
+JSON: Để trống
 
-Link:  
-```
-https://localhost:44394/api/chi-tiet-don-hang/theo-id
-```
+### - [GET request] Get Order Detail by OrderID (Xem các Order Detail của cùng một OrderID)
 
-JSON: 
+Link (thay [orderId] trong đường dẫn bằng con số id của order, không có dấu ngoặc vuông):  
 ```
-{
-    "Id": 1
-}
-```
-
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/chi-tiet-don-hang/theo-id' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "Id": 1
-}'
+https://localhost:5001/api/chi-tiet-don-hang/order/[orderId]
 ```
 
-- **[GET request] Get Order Detail by OrderID (Xem Order Detail theo OrderID)**
+Ví dụ:
+```
+https://localhost:5001/api/chi-tiet-don-hang/order/1
+```
+sẽ lấy toàn bộ các order detail thuộc về order có id == 1
 
-Link:  
-```
-https://localhost:44394/api/chi-tiet-don-hang/theo-don-hang
-```
-
-JSON: 
-```
-{
-    "OrderId": 1
-}
-```
-
-Curl command:
-```
-curl --location --request GET 'https://localhost:44394/api/chi-tiet-don-hang/theo-don-hang' \
---header 'Content-Type: application/json' \
---data-raw '{
-    "OrderId": 1
-}'
-```
+JSON: Để trống

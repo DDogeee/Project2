@@ -76,11 +76,11 @@ namespace Project2.Services
                 return GenericResultModel<KeyResponseViewModel>.Failed("Failed to delete key");
             }
         }
-        public async Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key)
+        public async Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(int id)
         {
             try
             {
-                var s = await _dbContext.Keys.FirstOrDefaultAsync(x => x.Id == _key.Id);
+                var s = await _dbContext.Keys.FirstOrDefaultAsync(x => x.Id == id);
                 var keyView = new KeyResponseViewModel {
                     Id = s.Id,
                     MachineId = s.MachineId,
@@ -95,7 +95,7 @@ namespace Project2.Services
             }
             catch
             {   
-                return GenericResultModel<KeyResponseViewModel>.Failed("Failed to get key by ID" + _key.Id);
+                return GenericResultModel<KeyResponseViewModel>.Failed("Failed to get key by ID" + id);
             }
         }
         public async Task<int> GenerateKey(int _ToolId, string _MachineId)

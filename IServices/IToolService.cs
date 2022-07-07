@@ -14,7 +14,7 @@ namespace Project2.IServices
         Task<GenericResultModel<ToolResponseViewModel>> AddToolAsync(ToolResponseViewModel _tool);
         Task<GenericResultModel<ToolResponseViewModel>> EditToolAsync(ToolResponseViewModel _tool);
         Task<GenericResultModel<ToolResponseViewModel>> DeleteToolAsync(ToolResponseViewModel _tool);
-        Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(ToolResponseViewModel _tool);
+        Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(int id);
 
 
 

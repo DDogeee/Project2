@@ -37,10 +37,10 @@ namespace Project2.Controllers
 
         [HttpGet]
         [Authorize]
-        [Route("chi-tiet")]
-        public GenericResultModel<UserResponseViewModel> GetUserId(UserResponseViewModel user)
+        [Route("chi-tiet/{id:int}")]
+        public GenericResultModel<UserResponseViewModel> GetUserId(int id)
         {
-            return _userService.GetUserId(user);
+            return _userService.GetUserId(id);
         }
         
         [HttpPost]

@@ -56,19 +56,19 @@ namespace Project2.Controllers
             return await _orderService.DeleteOrderAsync(_order);
         }
 
-        [HttpGet("theo-id")]
+        [HttpGet("chi-tiet/{id:int}")]
         [Authorize]
-        public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(OrderResponseViewModel _order)
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(int id)
         {
-            return await _orderService.GetOrderIdAsync(_order);
+            return await _orderService.GetOrderIdAsync(id);
         }
-        
-        // [HttpGet("theo-user")]
-        // [Authorize]
-        // public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderByUserIdAsync(OrderResponseViewModel _order)
-        // {
-        //     return await GetOrderByUserIdAsync(_order);
 
-        // }
+        [HttpGet("lich-su/{userId:int}")]
+        [Authorize]
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetUserOrderHistoryAsync(int userId)
+        {
+            return await _orderService.GetUserOrderHistoryAsync(userId);
+
+        }
     }
 }

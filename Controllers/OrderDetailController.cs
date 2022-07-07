@@ -28,18 +28,18 @@ namespace Project2.Controllers
             return await _orderDetailService.GetOrderDetailAsync();
         }
 
-        [HttpGet("theo-id")]
+        [HttpGet("chi-tiet/{id:int}")]
         [Authorize]
-        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailIdAsync(OrderDetailResponseViewModel _detail)
+        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailIdAsync(int id)
         {
-            return await _orderDetailService.GetOrderDetailIdAsync(_detail);
+            return await _orderDetailService.GetOrderDetailIdAsync(id);
         }
 
-        [HttpGet("theo-don-hang")]
+        [HttpGet("order/{orderId:int}")]
         [Authorize]
-        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(OrderDetailResponseViewModel _detail)
+        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(int orderId)
         {
-            return await _orderDetailService.GetOrderDetailByOrderIdAsync(_detail);
+            return await _orderDetailService.GetOrderDetailByOrderIdAsync(orderId);
         }
     }
 }

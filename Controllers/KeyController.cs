@@ -42,11 +42,11 @@ namespace Project2.Controllers
             return await _KeyService.DeleteKeyAsync(_key);
         }
 
-        [HttpGet("theo-id")]
+        [HttpGet("chi-tiet/{id:int}")]
         [Authorize]
-        public async Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key)
+        public async Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(int id)
         {
-            return await _KeyService.GetKeyIdAsync(_key);
+            return await _KeyService.GetKeyIdAsync(id);
         }
     }
 }

@@ -83,11 +83,11 @@ namespace Project2.Services
             }
         }
 
-        public GenericResultModel<UserResponseViewModel> GetUserId(UserResponseViewModel _user)
+        public GenericResultModel<UserResponseViewModel> GetUserId(int id)
         {
             try
             {
-                var user = _dbContext.Users.FirstOrDefault(x => x.Id == _user.Id);
+                var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
                 var userView = new UserResponseViewModel
                 {
                     Id = user.Id,
@@ -102,7 +102,7 @@ namespace Project2.Services
             }
             catch
             {
-                return GenericResultModel<UserResponseViewModel>.Success("Failed to get information from this user Id: " + _user.Id);
+                return GenericResultModel<UserResponseViewModel>.Success("Failed to get information from this user Id: " + id);
             }
         }
 

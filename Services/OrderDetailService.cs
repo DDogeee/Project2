@@ -40,11 +40,11 @@ namespace Project2.Services
             }
 
         }
-        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailIdAsync(OrderDetailResponseViewModel _detail)
+        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailIdAsync(int id)
         {
             try
             {
-                var s = await _dbContext.OrderDetails.FirstOrDefaultAsync(x => x.Id == _detail.Id);
+                var s = await _dbContext.OrderDetails.FirstOrDefaultAsync(x => x.Id == id);
                 var detailView = new OrderDetailResponseViewModel {
                     Id = s.Id,
                     OrderId = s.OrderId,
@@ -57,14 +57,14 @@ namespace Project2.Services
             }
             catch
             {   
-                return GenericResultModel<OrderDetailResponseViewModel>.Failed("Failed to get order detail by ID: " + _detail.Id);
+                return GenericResultModel<OrderDetailResponseViewModel>.Failed("Failed to get order detail by ID: " + id);
             }
         }
-        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(OrderDetailResponseViewModel _detail)
+        public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(int orderId)
         {
             try
             {
-                var details = await _dbContext.OrderDetails.Where(s => s.OrderId == _detail.OrderId).Select(s => new OrderDetailResponseViewModel
+                var details = await _dbContext.OrderDetails.Where(s => s.OrderId == orderId).Select(s => new OrderDetailResponseViewModel
                 {
                     Id = s.Id,
                     OrderId = s.OrderId,
@@ -77,7 +77,7 @@ namespace Project2.Services
             }
             catch
             {
-                return GenericResultModel<OrderDetailResponseViewModel>.Failed("Failed to view list of order details of this OrderId: " + _detail.OrderId);
+                return GenericResultModel<OrderDetailResponseViewModel>.Failed("Failed to view list of order details of this OrderId: " + orderId);
             }
         }
         public async Task<OrderDetail> AddOrderDetailAsync(Order _order, ToolOrderDataModel _toolOrderData)

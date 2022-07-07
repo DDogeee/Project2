@@ -137,11 +137,11 @@ namespace Project2.Services
                 return GenericResultModel<ToolResponseViewModel>.Failed("Failed to delete tool");
             }
         }
-        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(ToolResponseViewModel _tool)
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(int id)
         {
             try
             {
-                var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _tool.Id);
+                var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == id);
                 var toolView = new ToolResponseViewModel {
                     Id = tool.Id,
                     Code = tool.Code,
@@ -155,7 +155,7 @@ namespace Project2.Services
             }
             catch
             {   
-                return GenericResultModel<ToolResponseViewModel>.Failed("Failed to get tool by ID");
+                return GenericResultModel<ToolResponseViewModel>.Failed("Failed to get tool by ID: " + id);
             }
         }
         public async Task<decimal> GetToolPriceByIdAsync(int _toolId)
@@ -164,12 +164,12 @@ namespace Project2.Services
             {
                 var tool = await _dbContext.Tools.FirstOrDefaultAsync(x => x.Id == _toolId);
 
-                Console.WriteLine("Get price for this tool successfully");
+                Console.WriteLine("Get price for tool with ID: " + _toolId + " successfully");
                 return tool.Price;
             }
             catch
             {   
-                Console.WriteLine("Failed to get price for this tool");
+                Console.WriteLine("Failed to get price for tool with ID: " + _toolId);
                 return 0;
             }
         }

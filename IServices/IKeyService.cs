@@ -13,6 +13,6 @@ namespace Project2.IServices
         Task<GenericResultModel<KeyResponseViewModel>> GetKeyAsync();
         Task<GenericResultModel<KeyResponseViewModel>> ExtendKeyAsync(KeyResponseViewModel _key);
         Task<GenericResultModel<KeyResponseViewModel>> DeleteKeyAsync(KeyResponseViewModel _key);
-        Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(KeyResponseViewModel _key);
+        Task<GenericResultModel<KeyResponseViewModel>> GetKeyIdAsync(int id);
     }
 }

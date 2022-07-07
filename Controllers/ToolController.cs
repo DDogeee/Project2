@@ -49,10 +49,10 @@ namespace Project2.Controllers
             return await _toolService.DeleteToolAsync(_tool);
         }
 
-        [HttpGet("chi-tiet")]
-        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(ToolResponseViewModel _tool)
+        [HttpGet("chi-tiet/{id:int}")]
+        public async Task<GenericResultModel<ToolResponseViewModel>> GetToolIdAsync(int id)
         {
-            return await _toolService.GetToolIdAsync(_tool);
+            return await _toolService.GetToolIdAsync(id);
         }
     }
 }

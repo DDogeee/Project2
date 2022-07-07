@@ -11,8 +11,8 @@ namespace Project2.IServices
     public interface IOrderDetailService
     {
         Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailAsync();
-        Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailIdAsync(OrderDetailResponseViewModel _detail);
-        Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(OrderDetailResponseViewModel _detail);
+        Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailIdAsync(int id);
+        Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailByOrderIdAsync(int orderId);
 
 
     }
