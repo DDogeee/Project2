@@ -23,14 +23,14 @@
       - [Xem đơn hàng bằng ID](https://github.com/DDogeee/Project2#--get-request-get-order-by-id-xem-%C4%91%C6%A1n-h%C3%A0ng-qua-id)
       - [Xem lịch sử đặt hàng của người dùng bằng username](https://github.com/DDogeee/Project2/#--get-request-get-order-by-username-l%E1%BA%A5y-l%E1%BB%8Bch-s%E1%BB%AD-%C4%91%E1%BA%B7t-h%C3%A0ng-c%E1%BB%A7a-m%E1%BB%99t-user)
     - [Key](https://github.com/DDogeee/Project2#key)
-      - [Lấy danh sách các key](https://github.com/DDogeee/Project2#--get-request-get-key-xem-to%C3%A0n-b%E1%BB%99-danh-s%C3%A2ch-c%C3%A1c-key)
+      - [Lấy danh sách các key](https://github.com/DDogeee/Project2#--get-request-get-key-xem-to%C3%A0n-b%E1%BB%99-danh-s%C3%A1ch-c%C3%A1c-key)
       - [Gia hạn thời gian cho key](https://github.com/DDogeee/Project2#--put-request-extend-key-gia-h%E1%BA%A1n-th%E1%BB%9Di-gian-cho-key)
       - [Xoá key](https://github.com/DDogeee/Project2#--put-request-delete-key-xo%C3%A1-key)
       - [Xem key bằng ID](https://github.com/DDogeee/Project2#--get-request-get-key-by-id-xem-key-theo-id)  
     - [Order detail](https://github.com/DDogeee/Project2#order-detail)
       - [Lấy danh sách các Order Detail](https://github.com/DDogeee/Project2#--get-request-get-order-detail-l%E1%BA%A5y-danh-s%C3%A1ch-to%C3%A0n-b%E1%BB%99-order-detail)
       - [Xem Order Detail bằng ID](https://github.com/DDogeee/Project2#--get-request-get-order-detail-by-id-xem-order-detail-theo-id)
-      - [Xem các Order Detail của cùng một Order](https://github.com/DDogeee/Project2#--get-request-get-order-detail-by-orderid-xem-order-detail-theo-orderid)
+      - [Xem các Order Detail của cùng một Order](https://github.com/DDogeee/Project2/edit/master/README.md#--get-request-get-order-detail-by-orderid-xem-c%C3%A1c-order-detail-c%E1%BB%A7a-c%C3%B9ng-m%E1%BB%99t-orderid)
 
 ### 1. Ngay sau khi clone git: 
 a. Khôi phục bản backup ToolManagement.bak theo hướng dẫn sau: 
