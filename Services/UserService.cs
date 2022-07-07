@@ -68,6 +68,7 @@ namespace Project2.Services
             {
                 var __user = new UserResponseViewModel
                 {
+                    Id = _user.Id,
                     IsAdmin = _user.IsAdmin,
                     Username = _user.Username,
                     Phone = _user.Phone,
