@@ -5,7 +5,7 @@ namespace Project2.ViewModel
 {
     public class OrderDataModel
     {
-        public int UserId { get; set; }
+        public string Username { get; set; }
         public List<ToolOrderDataModel> Tools { get; set; }
     }
 }

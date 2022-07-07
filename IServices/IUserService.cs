@@ -10,7 +10,7 @@ namespace Project2.IServices
     public interface IUserService
     {
         GenericResultModel<JsonResult> Login(UserResponseViewModel user);
-        GenericResultModel<UserResponseViewModel> GetUserId(int id);
+        GenericResultModel<UserResponseViewModel> GetUserInfo(string username);
         GenericResultModel<UserResponseViewModel> Register(UserResponseViewModel user);
         GenericResultModel<string> Logout(string token);
     }

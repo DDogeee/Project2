@@ -23,7 +23,7 @@ namespace Project2.Services
             _config = config;
         }
 
-        public  GenericResultModel<UserResponseViewModel> Register(UserResponseViewModel user)
+        public GenericResultModel<UserResponseViewModel> Register(UserResponseViewModel user)
         {
             try
             {
@@ -68,7 +68,6 @@ namespace Project2.Services
             {
                 var __user = new UserResponseViewModel
                 {
-                    Id = _user.Id,
                     IsAdmin = _user.IsAdmin,
                     Username = _user.Username,
                     Phone = _user.Phone,
@@ -83,12 +82,11 @@ namespace Project2.Services
                 return GenericResultModel<JsonResult>.Success(new JsonResult(data));
             }
         }
-
-        public GenericResultModel<UserResponseViewModel> GetUserId(int id)
+        public GenericResultModel<UserResponseViewModel> GetUserInfo(string username)
         {
             try
             {
-                var user = _dbContext.Users.FirstOrDefault(x => x.Id == id);
+                var user = _dbContext.Users.FirstOrDefault(x => x.Username == username);
                 var userView = new UserResponseViewModel
                 {
                     Id = user.Id,
@@ -103,7 +101,7 @@ namespace Project2.Services
             }
             catch
             {
-                return GenericResultModel<UserResponseViewModel>.Success("Failed to get information from this user Id: " + id);
+                return GenericResultModel<UserResponseViewModel>.Success("Failed to get information from user " + username);
             }
         }
 

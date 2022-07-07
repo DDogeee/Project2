@@ -7,7 +7,7 @@
       - [Đăng nhập](https://github.com/DDogeee/Project2#--post-request-login-%C4%91%C4%83ng-nh%E1%BA%ADp)
       - [Đăng kí](https://github.com/DDogeee/Project2#--post-request-register-%C4%91%C4%83ng-k%C3%AD)
       - [Đăng xuất](https://github.com/DDogeee/Project2#--post-request-logout-%C4%91%C4%83ng-xu%E1%BA%A5t)
-      - [Xem thông tin người dùng bằng ID](https://github.com/DDogeee/Project2#--get-request-get-user-by-id-xem-th%C3%B4ng-tin-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-qua-id)
+      - [Xem thông tin người dùng bằng username](https://github.com/DDogeee/Project2#--get-request-get-user-by-username-xem-th%C3%B4ng-tin-ng%C6%B0%E1%BB%9Di-d%C3%B9ng-qua-username)
     - [Tool](https://github.com/DDogeee/Project2#tool)
       - [Lấy danh sách các tool](https://github.com/DDogeee/Project2#--get-request-get-tool-l%E1%BA%A5y-danh-s%C3%A1ch-c%C3%A1c-tool)
       - [Thêm tool](https://github.com/DDogeee/Project2#--post-request-add-tool-th%C3%AAm-tool)
@@ -21,7 +21,7 @@
       - [Duyệt đơn hàng](https://github.com/DDogeee/Project2#--put-request-approve-order-duy%E1%BB%87t-%C4%91%C6%A1n-h%C3%A0ng)
       - [Xoá đơn hàng](https://github.com/DDogeee/Project2#--put-request-delete-order-xo%C3%A1-%C4%91%C6%A1n-h%C3%A0ng)
       - [Xem đơn hàng bằng ID](https://github.com/DDogeee/Project2#--get-request-get-order-by-id-xem-%C4%91%C6%A1n-h%C3%A0ng-qua-id)
-      - [Xem lịch sử đặt hàng của người dùng bằng userId](https://github.com/DDogeee/Project2#--get-request-get-order-by-userid-l%E1%BA%A5y-c%C3%A1c-%C4%91%C6%A1n-h%C3%A0ng-c%E1%BB%A7a-m%E1%BB%99t-userid---l%E1%BB%97i-stack-overflow)
+      - [Xem lịch sử đặt hàng của người dùng bằng username](https://github.com/DDogeee/Project2/#--get-request-get-order-by-username-l%E1%BA%A5y-l%E1%BB%8Bch-s%E1%BB%AD-%C4%91%E1%BA%B7t-h%C3%A0ng-c%E1%BB%A7a-m%E1%BB%99t-user)
     - [Key](https://github.com/DDogeee/Project2#key)
       - [Lấy danh sách các key](https://github.com/DDogeee/Project2#--get-request-get-key-xem-to%C3%A0n-b%E1%BB%99-danh-s%C3%A2ch-c%C3%A1c-key)
       - [Gia hạn thời gian cho key](https://github.com/DDogeee/Project2#--put-request-extend-key-gia-h%E1%BA%A1n-th%E1%BB%9Di-gian-cho-key)
@@ -101,19 +101,19 @@ https://localhost:44394/api/quan-ly-user/dang-xuat
 
 JSON: Để trống
 
-### - [GET request] Get User by ID (Xem thông tin người dùng qua ID)
+### - [GET request] Get User by username (Xem thông tin người dùng qua username)
 
-Link (thay [id] trong đường dẫn bằng con số id của user, không có dấu ngoặc vuông):  
+Link (thay [name] trong đường dẫn bằng một xâu là tên đăng nhập, không có dấu ngoặc vuông):  
 ```
-https://localhost:44394/api/quan-ly-user/chi-tiet/[id]
+https://localhost:44394/api/quan-ly-user/chi-tiet/[name]
 ```
 
 Ví dụ:
 ```
-https://localhost:44394/api/quan-ly-user/chi-tiet/1
+https://localhost:44394/api/quan-ly-user/chi-tiet/phamvudung
 ```
 
-sẽ lấy thông tin của người dùng có id == 1
+sẽ lấy thông tin của người dùng có tên đăng nhập là phamvudung
 
 JSON: Để trống
 
@@ -185,7 +185,7 @@ JSON:
 
 ### - [GET request] Get Tool by ID (Xem thông tin của tool theo ID)
 
-Link (thay [id] trong đường dẫn bằng con số id của tool, không có dấu ngoặc vuông):  
+Link (thay [id] trong đường dẫn bằng một số nguyên là mã số id của tool, không có dấu ngoặc vuông):  
 ```
 https://localhost:5001/api/quan-ly-tool/chi-tiet/[id]
 ```
@@ -234,7 +234,7 @@ https://localhost:44394/api/quan-ly-don-hang/them-don-hang
 JSON:
 ```json
 {
-    "UserId": 1,
+    "UserId": "phamvudung",
     "Tools": 
     [
         {
@@ -283,7 +283,7 @@ JSON:
 
 ### - [GET request] Get Order by ID (Xem đơn hàng qua ID)
 
-Link (thay [id] trong đường dẫn bằng con số id của order, không có dấu ngoặc vuông):  
+Link (thay [id] trong đường dẫn bằng một số nguyên là mã số id của order, không có dấu ngoặc vuông):  
 ```
 https://localhost:5001/api/quan-ly-don-hang/chi-tiet/[id]
 ```
@@ -296,18 +296,18 @@ sẽ lấy thông tin của order có id == 1
 
 JSON: Để trống
 
-### - [GET request] Get Order by UserID (Lấy các đơn hàng của một UserID)
+### - [GET request] Get Order by Username (Lấy lịch sử đặt hàng của một user)
 
-Link (thay [userId] trong đường dẫn bằng con số id của user, không có dấu ngoặc vuông):  
+Link (thay [name] trong đường dẫn bằng một xâu là tên đăng nhập, không có dấu ngoặc vuông):  
 ```
-https://localhost:5001/api/quan-ly-don-hang/lich-su/[userId]
+https://localhost:5001/api/quan-ly-don-hang/lich-su/[name]
 ```
 
 Ví dụ:
 ```
-https://localhost:5001/api/quan-ly-don-hang/lich-su/1
+https://localhost:5001/api/quan-ly-don-hang/lich-su/phamvudung
 ```
-sẽ lấy toàn bộ các order thuộc về user có id == 1
+sẽ lấy toàn bộ các order thuộc về user có tên đăng nhập là phamvudung
 
 JSON: Để trống
 
@@ -355,7 +355,7 @@ JSON:
 
 ### - [GET request] Get Key by ID (Xem key theo ID)
 
-Link (thay [id] trong đường dẫn bằng con số id của key, không có dấu ngoặc vuông):  
+Link (thay [id] trong đường dẫn bằng một số nguyên là mã số id của key, không có dấu ngoặc vuông):  
 ```
 https://localhost:5001/api/quan-ly-key/chi-tiet/[id]
 ```
@@ -381,7 +381,7 @@ JSON: Để trống
 
 ### - [GET request] Get Order Detail by ID (Xem Order Detail theo ID)
 
-Link (thay [id] trong đường dẫn bằng con số id của order detail, không có dấu ngoặc vuông):  
+Link (thay [id] trong đường dẫn bằng một số nguyên là mã số id của order detail, không có dấu ngoặc vuông):  
 ```
 https://localhost:5001/api/chi-tiet-don-hang/chi-tiet/[id]
 ```
@@ -396,7 +396,7 @@ JSON: Để trống
 
 ### - [GET request] Get Order Detail by OrderID (Xem các Order Detail của cùng một OrderID)
 
-Link (thay [orderId] trong đường dẫn bằng con số id của order, không có dấu ngoặc vuông):  
+Link (thay [orderId] trong đường dẫn bằng một số nguyên là mã số id của order, không có dấu ngoặc vuông):  
 ```
 https://localhost:5001/api/chi-tiet-don-hang/order/[orderId]
 ```

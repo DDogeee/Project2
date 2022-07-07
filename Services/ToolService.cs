@@ -170,7 +170,7 @@ namespace Project2.Services
             catch
             {   
                 Console.WriteLine("Failed to get price for tool with ID: " + _toolId);
-                return 0;
+                return Int32.MaxValue*(-1);
             }
         }
     }

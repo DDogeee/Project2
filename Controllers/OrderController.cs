@@ -63,11 +63,11 @@ namespace Project2.Controllers
             return await _orderService.GetOrderIdAsync(id);
         }
 
-        [HttpGet("lich-su/{userId:int}")]
+        [HttpGet("lich-su/{username}")]
         [Authorize]
-        public async Task<GenericResultModel<OrderResponseViewModel>> GetUserOrderHistoryAsync(int userId)
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetUserOrderHistoryAsync(string username)
         {
-            return await _orderService.GetUserOrderHistoryAsync(userId);
+            return await _orderService.GetUserOrderHistoryAsync(username);
 
         }
     }

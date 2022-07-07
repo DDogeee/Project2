@@ -25,13 +25,18 @@ namespace Project2.Services
         {
             try
             {
-                var orders = await _dbContext.Orders.Select(s => new OrderResponseViewModel
+                // Join table Order and table Users
+                var query = from od in _dbContext.Orders
+                            join u in _dbContext.Users on od.UserId equals u.Id
+                            select new { Order = od, User = u };
+
+                var orders = await query.Select(item => new OrderResponseViewModel
                 {
-                    Id = s.Id,
-                    UserId = s.UserId,
-                    OrderDate = s.OrderDate,
-                    TotalPrice = s.TotalPrice,
-                    Status = s.Status
+                        Id = item.Order.Id,
+                        Username = item.User.Username,
+                        OrderDate = item.Order.OrderDate,
+                        TotalPrice = item.Order.TotalPrice,
+                        Status = item.Order.Status
                 }).ToListAsync();
 
                 return GenericResultModel<OrderResponseViewModel>.Success(orders);
@@ -46,13 +51,19 @@ namespace Project2.Services
         {
             try
             {
-                var pendingOrders = await _dbContext.Orders.Where(s => s.Status == Constants.StatusPending).Select(s => new OrderResponseViewModel
+                // Join table Order and table Users
+                var query = from od in _dbContext.Orders
+                            join u in _dbContext.Users on od.UserId equals u.Id
+                            where od.Status == Constants.StatusPending
+                            select new { Order = od, User = u };
+
+                var pendingOrders = await query.Select(s => new OrderResponseViewModel
                 {
-                    Id = s.Id,
-                    UserId = s.UserId,
-                    OrderDate = s.OrderDate,
-                    TotalPrice = s.TotalPrice,
-                    Status = s.Status
+                    Id = s.Order.Id,
+                    Username = s.User.Username,
+                    OrderDate = s.Order.OrderDate,
+                    TotalPrice = s.Order.TotalPrice,
+                    Status = s.Order.Status
                 }).ToListAsync();
                 return GenericResultModel<OrderResponseViewModel>.Success(pendingOrders);
             }
@@ -68,9 +79,11 @@ namespace Project2.Services
                 var currentTime = DateTime.Now;
                 decimal currentPrice = 0;                   //Keep track of prices
 
+                var user = await _dbContext.Users.FirstOrDefaultAsync(s => s.Username == _orderData.Username);
+
                 var order = new Order
                 {
-                    UserId = _orderData.UserId,
+                    UserId = user.Id,
                     OrderDate = currentTime,
                     TotalPrice = currentPrice,
                     Status = Constants.StatusPending        //New order awaits admin's approval
@@ -162,15 +175,20 @@ namespace Project2.Services
         {
             try
             {
-                var order = await _dbContext.Orders.FirstOrDefaultAsync(x => x.Id == id);
-                var orderView = new OrderResponseViewModel
+                // Join table Order and table Users
+                var query = from od in _dbContext.Orders
+                            join u in _dbContext.Users on od.UserId equals u.Id
+                            where od.Id == id
+                            select new { Order = od, User = u };
+
+                var orderView = await query.Select(item => new OrderResponseViewModel
                 {
-                    Id = order.Id,
-                    UserId = order.UserId,
-                    OrderDate = order.OrderDate,
-                    TotalPrice = order.TotalPrice,
-                    Status = order.Status
-                };
+                        Id = item.Order.Id,
+                        Username = item.User.Username,
+                        OrderDate = item.Order.OrderDate,
+                        TotalPrice = item.Order.TotalPrice,
+                        Status = item.Order.Status
+                }).ToListAsync();
                 return GenericResultModel<OrderResponseViewModel>.Success(orderView);
             }
             catch
@@ -178,23 +196,29 @@ namespace Project2.Services
                 return GenericResultModel<OrderResponseViewModel>.Failed("Failed to get order by ID: " + id);
             }
         }
-        public async Task<GenericResultModel<OrderResponseViewModel>> GetUserOrderHistoryAsync(int userId)
+        public async Task<GenericResultModel<OrderResponseViewModel>> GetUserOrderHistoryAsync(string username)
         {
             try
             {
-                var userOrders = await _dbContext.Orders.Where(s => s.UserId == userId).Select(s => new OrderResponseViewModel
+                // Join table Order and table Users
+                var query = from od in _dbContext.Orders
+                            join u in _dbContext.Users on od.UserId equals u.Id
+                            where u.Username == username
+                            select new { Order = od, User = u };
+
+                var userOrders = await query.Select(item => new OrderResponseViewModel
                 {
-                    Id = s.Id,
-                    UserId = s.UserId,
-                    OrderDate = s.OrderDate,
-                    TotalPrice = s.TotalPrice,
-                    Status = s.Status
+                        Id = item.Order.Id,
+                        Username = item.User.Username,
+                        OrderDate = item.Order.OrderDate,
+                        TotalPrice = item.Order.TotalPrice,
+                        Status = item.Order.Status
                 }).ToListAsync();
                 return GenericResultModel<OrderResponseViewModel>.Success(userOrders);
             }
             catch
             {
-                return GenericResultModel<OrderResponseViewModel>.Failed("Failed to view list of orders by userID: " + userId);
+                return GenericResultModel<OrderResponseViewModel>.Failed("Failed to view list of orders by user: " + username);
             }
         }
     }

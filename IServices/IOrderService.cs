@@ -16,7 +16,7 @@ namespace Project2.IServices
         Task<GenericResultModel<OrderResponseViewModel>> ApproveOrderAsync(OrderResponseViewModel _order);
         Task<GenericResultModel<OrderResponseViewModel>> DeleteOrderAsync(OrderResponseViewModel _order);
         Task<GenericResultModel<OrderResponseViewModel>> GetOrderIdAsync(int id);
-        Task<GenericResultModel<OrderResponseViewModel>> GetUserOrderHistoryAsync(int userId);
+        Task<GenericResultModel<OrderResponseViewModel>> GetUserOrderHistoryAsync(string username);
 
 
 
