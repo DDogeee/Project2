@@ -325,7 +325,7 @@ JSON: Để trống
 
 ### - [PUT request] Extend Key (Gia hạn thời gian cho key)
 
-Key sẽ được kéo dài thời hạn thêm 365 ngày sau khi gọi API này (Cần phải bổ sung thêm các giai đoạn khác?)
+Key sẽ được kéo dài thời hạn thêm 30 ngày sau khi gọi API này
 
 Link:  
 ```

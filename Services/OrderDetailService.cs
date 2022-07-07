@@ -14,10 +14,15 @@ namespace Project2.Services
     public class OrderDetailService : IOrderDetailService
     {
         private readonly ToolManagementContext _dbContext;
+        private KeyService _keyService;
+        private ToolService _toolService;
         public OrderDetailService(ToolManagementContext db)
         {
             _dbContext = db;
+            _keyService = new KeyService(db);
+            _toolService = new ToolService(db);
         }
+
         public async Task<GenericResultModel<OrderDetailResponseViewModel>> GetOrderDetailAsync()
         {
             try
@@ -84,17 +89,14 @@ namespace Project2.Services
         {
             try
             {
-                var keyService = new KeyService(_dbContext);
-                var toolService = new ToolService(_dbContext);
-
                 var orderDetail = new OrderDetail
                 {
                     OrderId = _order.Id,
                     Date = _order.OrderDate,
                     //Generate a new key for this order detail
-                    KeyId = await keyService.GenerateKey(_toolOrderData.ToolId, _toolOrderData.MachineId),
+                    KeyId = await _keyService.GenerateKey(_toolOrderData.ToolId, _toolOrderData.MachineId),
                     //Get tool price from database
-                    Price = await toolService.GetToolPriceByIdAsync(_toolOrderData.ToolId),
+                    Price = await _toolService.GetToolPriceByIdAsync(_toolOrderData.ToolId),
                     Discount = _toolOrderData.Discount,
                 };
                 _dbContext.OrderDetails.Add(orderDetail);

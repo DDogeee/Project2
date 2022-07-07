@@ -50,7 +50,7 @@ namespace Project2.Services
                 var currentTime = DateTime.Now;
                 var key = await _dbContext.Keys.FirstOrDefaultAsync(x => x.Id == _key.Id);
                 key.StartDate = currentTime;
-                key.ToDate = currentTime.Add(new TimeSpan(365,0,0,0));   //Key is extended for another 365 days? -> Other extension methods?
+                key.ToDate = currentTime.Add(new TimeSpan(30,0,0,0));   //Key is extended for another 30 days
                 _dbContext.Entry(key).State = EntityState.Modified;
                 await _dbContext.SaveChangesAsync();
 

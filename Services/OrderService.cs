@@ -14,9 +14,11 @@ namespace Project2.Services
     public class OrderService : IOrderService
     {
         private readonly ToolManagementContext _dbContext;
+        private OrderDetailService _orderDetailService;
         public OrderService(ToolManagementContext db)
         {
             _dbContext = db;
+            _orderDetailService = new OrderDetailService(db);
         }
 
         public async Task<GenericResultModel<OrderResponseViewModel>> GetOrderAsync()
@@ -77,12 +79,11 @@ namespace Project2.Services
                 await _dbContext.SaveChangesAsync();
 
                 //Add new order details according to the number of tools and their amount of keys in the order
-                var orderDetail = new OrderDetailService(_dbContext);
                 foreach (var tool in _orderData.Tools)
                 {
                     for (int i = 0; i < tool.NumberOfKeys; i++)
                     {
-                        var detail = await orderDetail.AddOrderDetailAsync(order, tool);
+                        var detail = await _orderDetailService.AddOrderDetailAsync(order, tool);
                         if (detail.Discount != null)
                         {
                             currentPrice += detail.Price * (1 - detail.Discount.Value / 100);
