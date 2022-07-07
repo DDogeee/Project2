@@ -30,7 +30,7 @@
     - [Order detail](https://github.com/DDogeee/Project2#order-detail)
       - [Lấy danh sách các Order Detail](https://github.com/DDogeee/Project2#--get-request-get-order-detail-l%E1%BA%A5y-danh-s%C3%A1ch-to%C3%A0n-b%E1%BB%99-order-detail)
       - [Xem Order Detail bằng ID](https://github.com/DDogeee/Project2#--get-request-get-order-detail-by-id-xem-order-detail-theo-id)
-      - [Xem các Order Detail của cùng một Order](https://github.com/DDogeee/Project2/edit/master/README.md#--get-request-get-order-detail-by-orderid-xem-c%C3%A1c-order-detail-c%E1%BB%A7a-c%C3%B9ng-m%E1%BB%99t-orderid)
+      - [Xem các Order Detail của cùng một Order](https://github.com/DDogeee/Project2#--get-request-get-order-detail-by-orderid-xem-c%C3%A1c-order-detail-c%E1%BB%A7a-c%C3%B9ng-m%E1%BB%99t-orderid)
 
 ### 1. Ngay sau khi clone git: 
 a. Khôi phục bản backup ToolManagement.bak theo hướng dẫn sau: 
